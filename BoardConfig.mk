@@ -16,7 +16,7 @@
 # limitations under the License.
 #
 
-DEVICE_PATH := device/motorola/pokerp
+DEVICE_PATH := device/motorola/pokerpatas
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true

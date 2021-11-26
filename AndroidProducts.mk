@@ -4,9 +4,9 @@
 #
 #
 PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/omni_pokerp.mk
+    $(LOCAL_DIR)/omni_pokerpatas.mk
 
 COMMON_LUNCH_CHOICES := \
-    omni_pokerp-user \
-    omni_pokerp-userdebug \
-    omni_pokerp-eng
+    omni_pokerpatas-user \
+    omni_pokerpatas-userdebug \
+    omni_pokerpatas-eng

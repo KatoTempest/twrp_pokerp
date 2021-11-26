@@ -16,5 +16,5 @@
 # limitations under the License.
 #
 
-add_lunch_combo omni_pokerp-userdebug
-add_lunch_combo omni_pokerp-eng
+add_lunch_combo omni_pokerpatas-userdebug
+add_lunch_combo omni_pokerpatas-eng
