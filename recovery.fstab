@@ -21,5 +21,5 @@
 /para		emmc	/dev/block/platform/bootdevice/by-name/para		flags=display="Para";wipeingui
 
 # External devices
-/external_sd	auto	/dev/block/mmcblk1p1	/dev/block/mmcblk1		flags=display="Micro SD card";storage;wipeingui;removable
-/usb_otg	auto	/dev/block/sda1	/dev/block/sda			flags=display="Usb-Otg";storage;removable;wipeingui
+/external_sd	auto	/dev/block/mmcblk1p1	/dev/block/mmcblk1		flags=display="MicroSDcard";storage;wipeingui;removable
+/usb_otg            auto      /dev/block/sda1       /dev/block/sda                                  flags=display="USB-OTG";storage;wipeingui;removable
