@@ -24,8 +24,8 @@ $(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/embedded.mk)
 $(call inherit-product, vendor/omni/config/common.mk)
 
 # Device identifier. This must come after all inclusions
-PRODUCT_DEVICE := pokerp
-PRODUCT_NAME := omni_pokerp
+PRODUCT_DEVICE := pokerpatas
+PRODUCT_NAME := omni_pokerpatas
 PRODUCT_BRAND := motorola
 PRODUCT_MODEL := moto e(6) plus
 PRODUCT_MANUFACTURER := motorola
