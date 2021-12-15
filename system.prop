@@ -2,3 +2,9 @@ persist.service.adb.enable=1
 persist.service.debuggable=1
 persist.sys.usb.config=mtp,adb
 ro.adb.secure=0
+
+#USB MTP WHQL
+ro.sys.usb.whql.enable=0
+ro.sys.usb.storage.type=mtp,adb
+ro.vold.umsdirtyratio=20
+qemu.hw.mainkeys=1
