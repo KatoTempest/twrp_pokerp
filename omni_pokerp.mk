@@ -15,7 +15,6 @@ $(call inherit-product, device/motorola/pokerp/device.mk)
 
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/omni/config/common.mk)
-$(call inherit-product, vendor/omni/config/gsm.mk)
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := pokerp
@@ -23,3 +22,12 @@ PRODUCT_NAME := omni_pokerp
 PRODUCT_BRAND := motorola
 PRODUCT_MODEL := moto e(6) plus
 PRODUCT_MANUFACTURER := motorola
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_NAME=pokerp_64 \
+    BUILD_PRODUCT=pokerp \
+    TARGET_DEVICE=pokerp
+
+# HACK: Set vendor patch level
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.vendor.build.security_patch=2019-10-01

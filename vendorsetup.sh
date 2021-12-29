@@ -64,13 +64,14 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
     export OF_USE_GREEN_LED="1"
     export FOX_DISABLE_APP_MANAGER="1"
     export FOX_REPLACE_TOOLBOX_GETPROP="1"
+    export OF_USE_TWRP_SAR_DETECT="1"
 
-	#Android 12 gsi support (experimental)
+    #Android 12 gsi support (experimental)
 	#export OF_SKIP_DECRYPTED_ADOPTED_STORAGE="1"
 
 	#Build type and mantainer info
 	export OF_MAINTAINER="KatoTempest"
-    export FOX_VARIANT="FDE-testing"
+    export FOX_VARIANT="testing"
 	export OF_MAINTAINER_AVATAR="$PWD/device/motorola/pokerp/avatar.png"
 
 
