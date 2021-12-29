@@ -62,7 +62,7 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	#Build type and mantainer info
 	export OF_MAINTAINER="KatoTempest"
     export FOX_BUILD_TYPE="pokerp"
-	export OF_MAINTAINER_AVATAR="~/fox_9.0/device/motorola/pokerpatas/avatar.png"
+	export OF_MAINTAINER_AVATAR="$PWD/device/motorola/pokerpatas/avatar.png"
 
 
 	# OTA for custom ROMs
