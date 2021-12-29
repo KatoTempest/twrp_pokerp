@@ -34,6 +34,7 @@ if [ -z "$1" -a -z "$FOX_BUILD_DEVICE" ]; then
 fi
 
 if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
+   	export TARGET_ARCH="arm64"
    	export TW_DEFAULT_LANGUAGE="en"
 	export OF_SCREEN_H="2340"
     export OF_STATUS_H="83"
@@ -52,17 +53,25 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_SKIP_MULTIUSER_FOLDERS_BACKUP="1"
 	export OF_VANILLA_BUILD="1"
 	export OF_DISABLE_UPDATEZIP="1"
-	export OF_FLASHLIGHT_ENABLE="0"
+	export OF_FLASHLIGHT_ENABLE="1"
+	export OF_FL_PATH1="/system_root/system/flashlight_core"
 	export OF_TWRP_COMPATIBILITY_MODE="1"
 	export OF_NO_SAMSUNG_SPECIAL"1"
+    export OF_DONT_PATCH_ON_FRESH_INSTALLATION="1"
+    export OF_DONT_PATCH_ENCRYPTED_DEVICE="1"
+    export OF_KEEP_DM_VERITY="1"
+    export OF_KEEP_FORCED_ENCRYPTION="1"
+    export OF_USE_GREEN_LED="1"
+    export FOX_DISABLE_APP_MANAGER="1"
+    export FOX_REPLACE_TOOLBOX_GETPROP="1"
 
 	#Android 12 gsi support (experimental)
 	#export OF_SKIP_DECRYPTED_ADOPTED_STORAGE="1"
 
 	#Build type and mantainer info
 	export OF_MAINTAINER="KatoTempest"
-    export FOX_BUILD_TYPE="pokerp"
-	export OF_MAINTAINER_AVATAR="$PWD/device/motorola/pokerpatas/avatar.png"
+    export FOX_VARIANT="FDE-testing"
+	export OF_MAINTAINER_AVATAR="$PWD/device/motorola/pokerp/avatar.png"
 
 
 	# OTA for custom ROMs
