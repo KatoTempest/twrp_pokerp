@@ -1,5 +1,4 @@
- 
-on init
+ on init
     start hwservicemanager
     start servicemanager
 
