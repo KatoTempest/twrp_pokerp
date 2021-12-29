@@ -17,7 +17,7 @@
 #
 # 	Please maintain this if you use this script or any part of it
 #
-FDEVICE="pokerpatas"
+FDEVICE="pokerp"
 
 fox_get_target_device() {
 local chkdev=$(echo "$BASH_SOURCE" | grep $FDEVICE)
@@ -53,7 +53,6 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 	export OF_VANILLA_BUILD="1"
 	export OF_DISABLE_UPDATEZIP="1"
 	export OF_FLASHLIGHT_ENABLE="0"
-	export OF_FLASHLIGHT_ENABLE="0"
 	export OF_TWRP_COMPATIBILITY_MODE="1"
 	export OF_NO_SAMSUNG_SPECIAL"1"
 
@@ -62,8 +61,8 @@ if [ "$1" = "$FDEVICE" -o "$FOX_BUILD_DEVICE" = "$FDEVICE" ]; then
 
 	#Build type and mantainer info
 	export OF_MAINTAINER="KatoTempest"
-    export FOX_BUILD_TYPE="Unofficial"
-	export OF_MAINTAINER_AVATAR="$PWD/device/motorola/pokerpatas/avatar.png"
+    export FOX_BUILD_TYPE="pokerp"
+	export OF_MAINTAINER_AVATAR="~/fox_9.0/device/motorola/pokerpatas/avatar.png"
 
 
 	# OTA for custom ROMs

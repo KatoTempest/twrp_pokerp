@@ -85,6 +85,9 @@ TW_RECOVERY_ADDITIONAL_RELINK_FILES += \
 # Crypto
 TW_INCLUDE_CRYPTO := true
 
+# Debugging
+TARGET_USES_LOGD := true
+TWRP_INCLUDE_LOGCAT := true
 
 # Hack to get keymaster to recognize the key files
 PLATFORM_SECURITY_PATCH := 2021-08-01
