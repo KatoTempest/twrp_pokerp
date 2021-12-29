@@ -10,6 +10,9 @@ DEVICE_PATH := device/motorola/pokerp
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
+# Build
+BUILD_BROKEN_DUP_RULES := true
+
 # Architecture
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
