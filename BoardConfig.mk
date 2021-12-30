@@ -31,6 +31,11 @@ TARGET_USES_64_BIT_BINDER := true
 # Assert
 TARGET_OTA_ASSERT_DEVICE := pokerp
 
+# Avb
+BOARD_AVB_ENABLE := true
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --set_hashtree_disabled_flag
+BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 2
+
 # File systems
 BOARD_HAS_LARGE_FILESYSTEM := true
 #BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432 # This is the maximum known partition size, but it can be higher, so we just omit it
@@ -61,10 +66,14 @@ TARGET_KERNEL_HEADER_ARCH := arm64
 #TARGET_KERNEL_SOURCE := kernel/motorola/pokerp
 #TARGET_KERNEL_CONFIG := pokerp_defconfig
 
+# System as root
+BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
 BOARD_SUPPRESS_SECURE_ERASE := true
 
 # Platform
 TARGET_BOARD_PLATFORM := mt6765
+TARGET_NO_BOOTLOADER := true
+TARGET_USES_UEFI := true
 
 # TWRP Configuration
 TW_DEVICE_VERSION := By Kato
@@ -84,20 +93,14 @@ TW_SKIP_COMPATIBILITY_CHECK := true
 TW_NO_BATT_PERCENT := false
 TW_EXCLUDE_TWRPAPP := true
 TW_EXCLUDE_SUPERSU := true
-
-# Additional binaries & libraries needed for recovery
-TARGET_RECOVERY_DEVICE_MODULES += \
-    ashmemd_aidl_interface-cpp \
-    libashmemd_client
-
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
 
 # Crypto
 #TARGET_HW_DISK_ENCRYPTION := true
 TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_FBE := true
 TW_INCLUDE_CRYPTO_FBE := true
 
 # Debugging
@@ -107,8 +110,4 @@ TWRP_INCLUDE_LOGCAT := true
 # Hack to get keymaster to recognize the key files
 PLATFORM_SECURITY_PATCH := 2021-08-01
 VENDOR_SECURITY_PATCH := 2019-10-01
-#PLATFORM_VERSION := 9.0.0
 
-# Vendor
-#PLATFORM_SECURITY_PATCH := 2099-12-31
-#PLATFORM_VERSION := 99.99.99
