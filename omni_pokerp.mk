@@ -5,7 +5,6 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
 # Inherit from our custom product configuration
@@ -27,6 +26,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     BUILD_PRODUCT=pokerp \
     TARGET_DEVICE=pokerp
 
-# HACK: Set vendor patch level
+# Properties for decryption
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.build.security_patch=2099-12-31
+    ro.hardware.keystore=mt6765 \
+    ro.hardware.gatekeeper=mt6765 \
+    ro.build.system_root_image=true
