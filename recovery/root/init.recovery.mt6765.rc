@@ -1,5 +1,4 @@
 import /init.recovery.decrypt.rc
-import /init.recovery.microtrust.rc
 
 on early-init
     mount debugfs debugfs /sys/kernel/debug mode=0755
