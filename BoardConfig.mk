@@ -113,17 +113,16 @@ TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Crypto
-TARGET_HW_DISK_ENCRYPTION := true
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
- PLATFORM_SECURITY_PATCH := 2030-01-01
+PLATFORM_SECURITY_PATCH := 2030-01-01
 #PLATFORM_VERSION := 16.1.0
 #PLATFORM_SECURITY_PATCH := 2099-12-31
 #VENDOR_SECURITY_PATCH :=  2099-12-31
 
 # Additional binaries & libraries needed for recovery
 TARGET_RECOVERY_DEVICE_MODULES += \
-    android.hidl.base@1.0 \
+    android.hidl.base@1.0\
     ashmemd_aidl_interface-cpp \
     libashmemd_client \
     libcap \
@@ -138,7 +137,11 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libcap.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libpcrecpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so
+    $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/hw/android.hardware.keymaster@3.0-impl.so \
+    $(TARGET_OUT_VENDOR_EXECUTABLES)/hw/android.hardware.keymaster@3.0-service \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libkeymaster3device.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
