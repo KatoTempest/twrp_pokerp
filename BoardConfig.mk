@@ -33,7 +33,7 @@ TARGET_OTA_ASSERT_DEVICE := pokerp
 
 # File systems
 BOARD_HAS_LARGE_FILESYSTEM := true
-BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432 # This is the maximum known partition size, but it can be higher, so we just omit it
+#BOARD_RECOVERYIMAGE_PARTITION_SIZE := 33554432 # This is the maximum known partition size, but it can be higher, so we just omit it
 #BOARD_SYSTEMIMAGE_PARTITION_TYPE := ext4
 BOARD_BOOTIMAGE_PARTITION_SIZE := 32768
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2940928
@@ -126,16 +126,6 @@ PLATFORM_SECURITY_PATCH := 2030-01-01
 #PLATFORM_VERSION := 16.1.0
 #PLATFORM_SECURITY_PATCH := 2099-12-31
 #VENDOR_SECURITY_PATCH :=  2099-12-31
-
-# Additional binaries & libraries needed for recovery
-TARGET_RECOVERY_DEVICE_MODULES += \
-    android.hidl.base@1.0\
-    ashmemd_aidl_interface-cpp \
-    libashmemd_client \
-    libcap \
-    libion \
-    libpcrecpp \
-    libxml2
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so \
