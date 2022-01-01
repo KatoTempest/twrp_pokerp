@@ -120,6 +120,7 @@ TW_DEFAULT_BRIGHTNESS := 188
 TW_MAX_BRIGHTNESS := 255
 TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+TW_LOAD_VENDOR_MODULES := true
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
@@ -131,13 +132,14 @@ PLATFORM_SECURITY_PATCH := 2030-01-01
 #PLATFORM_SECURITY_PATCH := 2099-12-31
 #VENDOR_SECURITY_PATCH :=  2099-12-31
 
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libTEECommon.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster3.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster3support.so \
+# Additional binaries & libraries needed for recovery
+TARGET_RECOVERY_DEVICE_MODULES += \
+    android.hidl.base@1.0.so \
+    ashmemd_aidl_interface-cpp.so \
+    libashmemd_client.so \
+    libTEECommon.so \
+    libkeymaster3.so \
+    libkeymaster3support.so
 
 
 # Keymaster
