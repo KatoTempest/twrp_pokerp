@@ -80,7 +80,9 @@ BOARD_USE_FRAMEBUFFER_ALPHA_CHANNEL := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TARGET_DISABLE_TRIPLE_BUFFERING := false
 
-
+BOARD_AVB_RECOVERY_ADD_HASH_FOOTER_ARGS += \
+    --prop com.android.build.boot.os_version:$(PLATFORM_VERSION) \
+    --prop com.android.build.boot.security_patch:$(PLATFORM_SECURITY_PATCH)
 
 # Platform
 TARGET_BOARD_PLATFORM := mt6765
@@ -97,7 +99,7 @@ RECOVERY_SDCARD_ON_DATA := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_USE_TOOLBOX := true
-TW_NEW_ION_HEAP := true
+#TW_NEW_ION_HEAP := true
 TW_Y_OFFSET := 53
 TW_H_OFFSET := -53
 TW_NO_SCREEN_BLANK := true
@@ -133,14 +135,10 @@ TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libcap.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpcrecpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
-    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/hw/android.hardware.keymaster@3.0-impl.so \
-    $(TARGET_OUT_VENDOR_EXECUTABLES)/hw/android.hardware.keymaster@3.0-service \
-    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libkeymaster3device.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
+    $(TARGET_OUT_SHARED_LIBRARIES)/libTEECommon.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4support.so \
+
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
@@ -154,9 +152,14 @@ TW_CRYPTO_SYSTEM_VOLD_DEBUG := true
 # Hack to get keymaster to recognize the key files
 PLATFORM_SECURITY_PATCH := 2021-08-01
 VENDOR_SECURITY_PATCH := 2019-10-01
-PLATFORM_VERSION := 9.0.0
+PLATFORM_VERSION := 9
 
 # Avb
 BOARD_AVB_ENABLE := true
 BOARD_AVB_ROLLBACK_INDEX := $(PLATFORM_SECURITY_PATCH_TIMESTAMP)
 BOARD_AVB_MAKE_VBMETA_IMAGE_ARGS += --flags 3
+
+# Selinux
+BOARD_SEPOLICY_VERS := 28
+SEPOLICY_IGNORE_NEVERALLOWS := true
+SELINUX_IGNORE_NEVERALLOWS := true
