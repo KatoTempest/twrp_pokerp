@@ -73,10 +73,35 @@ service keymaster-3-0 /system_root/system/bin/android.hardware.keymaster@3.0-ser
     oneshot
     seclabel u:r:recovery:s0
 
+service keymaster_attestation-1-1 /system_root/system/bin/vendor.mediatek.hardware.keymaster_attestation@1.1-service
+    interface vendor.mediatek.hardware.keymaster_attestation@1.1::IKeymasterDevice default
+    class hal
+    user system
+    group system
+    disabled
+    seclabel u:r:recovery:s0
+
+service capi-2-0 /system_root/system/bin/vendor.microtrust.hardware.capi@2.0-service
+    class hal
+    user system
+    group system
+    oneshot
+    seclabel u:r:recovery:s0
+
+service wait_for_keymaster /system_root/system/bin/wait_for_keymaster
+    user root
+    group root system
+    priority -20
+    ioprio rt 0
+    seclabel u:r:recovery:s0
+
 on property:crypto.ready=0
     stop teei_daemon
     stop keymaster-3-0
     stop gatekeeper-1-0
+    stop keymaster_attestation-1-1
+    stop capi-2-0
+    stop wait_for_keymaster
     stop hwservicemanager
     stop keystore
     stop servicemanager
@@ -89,4 +114,7 @@ on property:vendor.sys.listeners.registered=true
     start keymaster-3-0
     start gatekeeper-1-0
     start servicemanager
+    start keymaster_attestation-1-1
+    start capi-2-0
+    start wait_for_keymaster
 
