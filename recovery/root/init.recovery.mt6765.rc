@@ -3,6 +3,9 @@ import /init.recovery.microtrust.rc
 on early-fs
     start vold
 
+on fs
+    export ANDROID_ROOT /system_root
+
 on boot
     start health-hal-2-0
 
