@@ -26,27 +26,27 @@ service patchlevel /sbin/patchlevel.sh
     oneshot
     seclabel u:r:recovery:s0
 
-service teei_daemon /system/bin/teei_daemon
+service teei_daemon /system_root/system/bin/teei_daemon
     user root
     group root
     disabled
     oneshot
     seclabel u:r:recovery:s0
 
-service hwservicemanager /system/bin/hwservicemanager
+service hwservicemanager /system_root/system/bin/hwservicemanager
     user root
     group root
     onrestart setprop hwservicemanager.ready false
     disabled
     seclabel u:r:recovery:s0
 
-service servicemanager /system/bin/servicemanager
+service servicemanager /system_root/system/bin/servicemanager
     user root
     group root readproc
     disabled
     seclabel u:r:recovery:s0
 
-service keystore_auth /system/bin/keystore_auth
+service keystore_auth /system_root/system/bin/keystore_auth
     oneshot
     user system
     group root
@@ -60,13 +60,13 @@ service keystore /system/bin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
+service gatekeeper-1-0 /system_root/system/bin/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service keymaster-3-0 /system/bin/android.hardware.keymaster@3.0-service
+service keymaster-3-0 /system_root/system/bin/android.hardware.keymaster@3.0-service
     user root
     group root drmrpc
     disabled
