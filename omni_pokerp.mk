@@ -27,12 +27,12 @@ PRODUCT_MODEL := moto e(6) plus
 PRODUCT_MANUFACTURER := motorola
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    PRODUCT_NAME=pokerp_64 \
+    PRODUCT_NAME=pokerp \
     BUILD_PRODUCT=pokerp \
     TARGET_DEVICE=pokerp
 
 # Properties for decryption
-PRODUCT_PROPERTY_OVERRIDES += \
+#PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.keystore=mt6765 \
     ro.hardware.gatekeeper=mt6765 \
     ro.build.system_root_image=true
