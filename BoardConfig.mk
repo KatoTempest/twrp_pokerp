@@ -134,16 +134,15 @@ PLATFORM_SECURITY_PATCH := 2030-01-01
 
 # Additional binaries & libraries needed for recovery
 TARGET_RECOVERY_DEVICE_MODULES += \
-    android.hidl.base@1.0.so \
-    ashmemd_aidl_interface-cpp.so \
-    libashmemd_client.so \
-    libTEECommon.so \
-    libkeymaster3.so \
-    libkeymaster3support.so
+    ashmemd_aidl_interface-cpp \
+    libashmemd_client
 
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
 
 # Keymaster
-#TARGET_PROVIDES_KEYMASTER := true
+TARGET_PROVIDES_KEYMASTER := true
 
 # Debugging
 TARGET_USES_LOGD := true
@@ -152,8 +151,8 @@ TW_CRYPTO_SYSTEM_VOLD_DEBUG := true
 
 
 # Hack to get keymaster to recognize the key files
-#PLATFORM_SECURITY_PATCH := 2021-08-01
-#VENDOR_SECURITY_PATCH := 2019-10-01
+PLATFORM_SECURITY_PATCH := 2021-08-01
+VENDOR_SECURITY_PATCH := 2019-10-01
 #PLATFORM_VERSION := 9
 
 # Avb
