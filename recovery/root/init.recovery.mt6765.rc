@@ -19,7 +19,8 @@ on init
     start patchlevel
 
 on fs
-    install_keyring
+    stop keyinstall-1-0
+    start keyinstall-1-0
 
 on fs
     start hwservicemanager
@@ -94,11 +95,10 @@ service capi-2-0 /system_root/vendor/bin/vendor.microtrust.hardware.capi@2.0-ser
     oneshot
     seclabel u:r:recovery:s0
 
-service wait_for_keymaster /system_root/vendor/bin/wait_for_keymaster
-    user root
-    group root system
-    priority -20
-    ioprio rt 0
+service hidl_memory /system_root/vendor/bin/android.hidl.allocator@1.0-service
+    class hal
+    user system
+    group system
     seclabel u:r:recovery:s0
 
 on property:crypto.ready=0
@@ -107,20 +107,28 @@ on property:crypto.ready=0
     stop gatekeeper-1-0
     stop keymaster_attestation-1-1
     stop capi-2-0
-    stop wait_for_keymaster
     stop hwservicemanager
     stop keystore
     stop servicemanager
+    stop hidl_memory
 
 on property:crypto.ready=1
     start teei_daemon
+    start vold
+    installkey /data
 
 on property:vendor.sys.listeners.registered=true
     start hwservicemanager
     start keymaster-3-0
+    start vendor.keymaster-3-0
     start gatekeeper-1-0
     start servicemanager
+    start keyinstall-1-0
     start keymaster_attestation-1-1
     start capi-2-0
-    start wait_for_keymaster
+    start hidl_memory
 
+    mkdir /data/misc/keystore 0700 keystore keystore
+    mkdir /data/misc/gatekeeper 0700 system system
+    mkdir /data/misc/keychain 0771 system system
+    mkdir /data/misc/systemkeys 0700 system system
