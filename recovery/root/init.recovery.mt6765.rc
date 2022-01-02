@@ -3,6 +3,9 @@ import /init.recovery.microtrust.rc
 on early-fs
     start vold
 
+on early-init
+    mount debugfs debugfs /sys/kernel/debug mode=0755
+
 on fs
     export ANDROID_ROOT /system_root
 
