@@ -1,5 +1,0 @@
-service capi-2-0 /system_root/vendor/bin/vendor.microtrust.hardware.capi@2.0-service
-    class hal
-    user system
-    group system
-    oneshot
