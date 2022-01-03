@@ -1,4 +1,4 @@
-import /microtrust.rc
+import /init.microtrust.rc
 
 on boot
     wait /sbin/patchlevel_set
