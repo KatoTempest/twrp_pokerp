@@ -67,7 +67,7 @@ BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 #TARGET_KERNEL_SOURCE := kernel/motorola/pokerp
-#TARGET_KERNEL_CONFIG := pokerp_defconfig
+#TARGET_KERNEL_CONFIG := p161bn_defconfig
 
 # System as root
 BOARD_BUILD_SYSTEM_ROOT_IMAGE := true
