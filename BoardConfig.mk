@@ -80,10 +80,6 @@ BOARD_USE_FRAMEBUFFER_ALPHA_CHANNEL := true
 RECOVERY_GRAPHICS_USE_LINELENGTH := true
 TARGET_DISABLE_TRIPLE_BUFFERING := false
 
-BOARD_AVB_RECOVERY_ADD_HASH_FOOTER_ARGS += \
-    --prop com.android.build.boot.os_version:$(PLATFORM_VERSION) \
-    --prop com.android.build.boot.security_patch:$(PLATFORM_SECURITY_PATCH)
-
 # Platform
 TARGET_BOARD_PLATFORM := mt6765
 TARGET_NO_BOOTLOADER := true
@@ -129,7 +125,6 @@ TW_INCLUDE_CRYPTO_FBE := true
 # Debugging
 TARGET_USES_LOGD := true
 TWRP_INCLUDE_LOGCAT := true
-TW_CRYPTO_SYSTEM_VOLD_DEBUG := true
 
 
 # Hack to get keymaster to recognize the key files

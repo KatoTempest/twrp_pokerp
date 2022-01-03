@@ -8,8 +8,7 @@
 $(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/embedded.mk)
 # Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
-# Inherit from pokerp device
-$(call inherit-product, device/motorola/pokerp/device.mk)
+
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := pokerp
 PRODUCT_NAME := omni_pokerp
