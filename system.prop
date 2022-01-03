@@ -10,5 +10,7 @@ ro.mediatek.platform=MT6765
 ro.vendor.mtk_f2fs_enable=0
 vendor.gatekeeper.disable_spu=true
 ro.sf.lcd_density=280
-ro.vendor.mtk_microtrust_tee_support=1
+ro.mtk_tee_gp_support=1
+ro.mtk_microtrust_tee_support=1
+ro.mtk_soter_support=1
 
