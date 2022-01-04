@@ -37,4 +37,4 @@ Release Month | September 2019
 
 
 
-![image] (https://www.xda-developers.com/files/2019/09/moto-e6-plus-1-1500x1500.jpg)
+![image](https://www.xda-developers.com/files/2019/09/moto-e6-plus-1-1500x1500.jpg)
