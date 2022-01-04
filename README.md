@@ -37,4 +37,4 @@ Release Month | September 2019
 
 
 
-![Motorola 6](https://images.priceoye.pk/motorola-moto-e6-plus-pakistan-priceoye-yisk6.jpg "Moto E(6) Plus")
+https://www.xda-developers.com/files/2019/09/moto-e6-plus-1-1500x1500.jpg
