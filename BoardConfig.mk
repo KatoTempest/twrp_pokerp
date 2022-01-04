@@ -49,7 +49,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_COPY_OUT_VENDOR := vendor
 
 # Kernel
-BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 buildvariant=user
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 buildvariant=user androidboot.selinux=permissive
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz-dtb
 #TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/kernel_dtb
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
@@ -119,7 +119,7 @@ TW_MAX_BRIGHTNESS := 255
 TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TW_LOAD_VENDOR_MODULES := true
-TW_HAVE_SELINUX := true
+#TW_HAVE_SELINUX := true
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
@@ -140,6 +140,9 @@ TWRP_INCLUDE_LOGCAT := true
 PLATFORM_SECURITY_PATCH := 2099-12-31
 VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 PLATFORM_VERSION := 20.1.0
+
+BOARD_SEPOLICY_VERS := 28.0
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 
 # Avb
 BOARD_AVB_ENABLE := true
