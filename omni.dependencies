@@ -1,8 +1,2 @@
 [
-  {
-    "remote": "LineageOS",
-    "repository": "android_device_mediatek_sepolicy",
-    "target_path": "device/mediatek/sepolicy",
-    "branch": "lineage-17.1"
-  }
 ]
