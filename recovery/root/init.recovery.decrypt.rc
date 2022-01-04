@@ -21,13 +21,13 @@ service patchlevel /sbin/patchlevel.sh
     oneshot
     seclabel u:r:recovery:s0
 
-service teei_daemon /sbin/teei_daemon
+service teei_daemon /vendor/bin/teei_daemon
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service capi-2-0 /sbin/vendor.microtrust.hardware.capi@2.0-service
+service capi-2-0 /vendor/bin/vendor.microtrust.hardware.capi@2.0-service
     user root
     group root
     disabled
@@ -65,13 +65,13 @@ service keystore /sbin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service
+service gatekeeper-1-0 /vendor/bin/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service
+service keymaster-3-0 /vendor/bin/android.hardware.keymaster@3.0-service
     user root
     group root drmrpc
     disabled
@@ -103,7 +103,7 @@ on property:ro.crypto.state=unencrypted
     stop servicemanager
     stop hwservicemanager
 
-on property:twrp.decrypt.done=true
+on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
     stop hidl_memory
     stop capi-2-0
     stop teei_daemon
