@@ -1,3 +1,21 @@
+Whats Working:-
+---------------------------
+*Almost Everything
+
+*MTP
+
+*ADB
+
+*ABD Root & Sideload
+
+*File Manager
+
+--------------------------------
+Whats Not Working:-
+--------------------------------
+
+*Decryption
+
 Device configuration for Moto E(6) Plus (pokerp)
 ================================================================
 
@@ -19,4 +37,4 @@ Release Month | September 2019
 
 
 
-![Motorola 6](http://celularymas.com.mx/2198-thickbox_default/moto-e6-plus-64-4-gb-dual-sim-gris-celularymas-celulares-y-tablets.jpg "Moto E(6) Plus")
+![Motorola 6](https://images.priceoye.pk/motorola-moto-e6-plus-pakistan-priceoye-yisk6.jpg "Moto E(6) Plus")
