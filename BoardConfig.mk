@@ -124,6 +124,7 @@ TW_LOAD_VENDOR_MODULES := true
 # Crypto
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
+TW_CRYPTO_USE_SYSTEM_VOLD := true
 #TW_INCLUDE_FBE_METADATA_DECRYPT := true
 
 # Debugging
@@ -143,7 +144,8 @@ PLATFORM_VERSION := 20.1.0
 
 BOARD_SEPOLICY_VERS := 28.0
 #include device/mediatek/sepolicy/sepolicy.mk
-BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+#BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
+BOARD_SEPOLICY_DIRS += bootable/recovery/sepolicy
 SELINUX_IGNORE_NEVERALLOWS := true
 
 # Avb
