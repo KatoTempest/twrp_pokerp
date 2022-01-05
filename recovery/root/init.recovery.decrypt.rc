@@ -22,6 +22,14 @@ service patchlevel /sbin/patchlevel.sh
     seclabel u:r:recovery:s0
 
 service teei_daemon /vendor/bin/teei_daemon
+    class core
+    user root
+    group root
+    disabled
+    seclabel u:r:recovery:s0
+
+service keymaster_attestation-1-1 /vendor/bin/vendor.mediatek.hardware.keymaster_attestation@1.1-service
+    interface vendor.mediatek.hardware.keymaster_attestation@1.1::IKeymasterDevice default
     user root
     group root
     disabled
@@ -59,19 +67,19 @@ service keystore_auth /sbin/keystore_auth
     disabled
     seclabel u:r:recovery:s0
 
-service keystore /sbin/keystore /tmp/misc/keystore
+service keystore /sbin/keystore /data/misc/keystore
     user root
-    group root drmrpc readproc
+    group root keystore drmrpc readproc
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /vendor/bin/android.hardware.gatekeeper@1.0-service
+service vendor.gatekeeper-1-0 /vendor/bin/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service keymaster-3-0 /vendor/bin/android.hardware.keymaster@3.0-service
+service vendor.keymaster-3-0 /vendor/bin/android.hardware.keymaster@3.0-service
     user root
     group root drmrpc
     disabled
@@ -81,36 +89,39 @@ on property:hwservicemanager.ready=true
     start teei_daemon
     start capi-2-0
     start hidl_memory
-    start keymaster-3-0
-    start gatekeeper-1-0
-
+    start vendor.keymaster-3-0
+    start vendor.gatekeeper-1-0
+    start keymaster_attestation-1-1
 
 on property:ro.crypto.state=unsupported
     stop hidl_memory
     stop capi-2-0
     stop teei_daemon
-    stop keymaster-3-0
-    stop gatekeeper-1-0
+    stop vendor.keymaster-3-0
+    stop vendor.gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
+    stop keymaster_attestation-1-1
 
 on property:ro.crypto.state=unencrypted
     stop hidl_memory
     stop capi-2-0
     stop teei_daemon
-    stop keymaster-3-0
-    stop gatekeeper-1-0
+    stop vendor.keymaster-3-0
+    stop vendor.gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
+    stop keymaster_attestation-1-1
 
 on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
     stop hidl_memory
     stop capi-2-0
     stop teei_daemon
-    stop keymaster-3-0
-    stop gatekeeper-1-0
+    stop vendor.keymaster-3-0
+    stop vendor.gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
+    stop keymaster_attestation-1-1
 
 on boot
     # Enable Power modes and set the CPU Freq Sampling rates
