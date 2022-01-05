@@ -118,14 +118,67 @@ TW_DEFAULT_BRIGHTNESS := 188
 TW_MAX_BRIGHTNESS := 255
 TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
-TW_LOAD_VENDOR_MODULES := true
+#TW_LOAD_VENDOR_MODULES := true
+#TW_FORCE_USE_BUSYBOX := true
 #TW_HAVE_SELINUX := true
+
+# TWRP specific changes
+LOCAL_C_INCLUDES += system/vold \
+
+TWRP_REQUIRED_MODULES += \
+    relink_libraries \
+    relink_binaries \
+    twrp_ramdisk \
+    bc \
+    dump_image \
+    erase_image \
+    flash_image \
+    mke2fs.conf \
+    pigz \
+    teamwin \
+    twrp \
+    fsck.fat \
+    fatlabel \
+    mkfs.fat \
+    permissive.sh \
+    simg2img_twrp \
+    libbootloader_message \
+    init.recovery.hlthchrg.rc \
+    init.recovery.service.rc \
+    init.recovery.ldconfig.rc \
+    awk \
+    toybox \
+    toolbox \
+    mkshrc_twrp \
+    plat_hwservice_contexts \
+    vendor_hwservice_contexts \
+    minadbd \
+    twrpbu \
+    adbd_system_api_recovery \
+    me.twrp.twrpapp.apk \
+    privapp-permissions-twrpapp.xml \
+    adbd_system_api_recovery \
+    libsync.recovery \
+    libmodprobe
+
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 #TW_CRYPTO_USE_SYSTEM_VOLD := true
 #TW_INCLUDE_FBE_METADATA_DECRYPT := true
+
+#Crypto modules
+
+TWRP_REQUIRED_MODULES += \
+    vold_prepare_subdirs \
+    task_recovery_profiles.json \
+    fscryptpolicyget
+
+TWRP_REQUIRED_MODULES += \
+        plat_service_contexts \
+        servicemanager \
+        servicemanager.rc
 
 # Debugging
 TARGET_USES_LOGD := true
