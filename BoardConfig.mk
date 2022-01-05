@@ -142,7 +142,7 @@ VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 PLATFORM_VERSION := 20.1.0
 
 BOARD_SEPOLICY_VERS := 28.0
-include device/mediatek/sepolicy/sepolicy.mk
+#include device/mediatek/sepolicy/sepolicy.mk
 BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
 SELINUX_IGNORE_NEVERALLOWS := true
 
