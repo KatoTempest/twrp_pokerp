@@ -1,7 +1,7 @@
 # mount point       fstype    device                                                                flags
-/system            ext4     /dev/block/platform/bootdevice/by-name/system        flags=display="System";backup=1
+/system            ext4     /dev/block/platform/bootdevice/by-name/system        flags=display="System";backup=1;flashimg=1
 /vendor            ext4     /dev/block/platform/bootdevice/by-name/vendor        flags=display="Vendor";backup=1
-/data              ext4     /dev/block/platform/bootdevice/by-name/userdata      flags=encryptable=/dev/block/platform/bootdevice/by-name/metadata
+/data              ext4     /dev/block/platform/bootdevice/by-name/userdata      flags=fileencryption=aes-256-xts
 /cache             ext4     /dev/block/platform/bootdevice/by-name/cache         flags=display="Cache"
 /protect_f         ext4     /dev/block/platform/bootdevice/by-name/protect1      flags=display="Protect_f"
 /protect_s         ext4     /dev/block/platform/bootdevice/by-name/protect2      flags=display="Protect_s"
