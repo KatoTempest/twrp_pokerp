@@ -125,7 +125,7 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 # TWRP specific changes
 LOCAL_C_INCLUDES += system/vold \
 
-TWRP_REQUIRED_MODULES += \
+#TWRP_REQUIRED_MODULES += \
     relink_libraries \
     relink_binaries \
     twrp_ramdisk \
@@ -198,8 +198,15 @@ PLATFORM_VERSION := 20.1.0
 BOARD_SEPOLICY_VERS := 28.0
 #include device/mediatek/sepolicy/sepolicy.mk
 #BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
-BOARD_SEPOLICY_DIRS += bootable/recovery/sepolicy
+#BOARD_SEPOLICY_DIRS += bootable/recovery/sepolicy
+#SELINUX_IGNORE_NEVERALLOWS := true
+
+# SELinux
+SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
+SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
 SELINUX_IGNORE_NEVERALLOWS := true
+TARGET_USES_PREBUILT_VENDOR_SEPOLICY := true
+
 
 # Avb
 BOARD_AVB_ENABLE := true
