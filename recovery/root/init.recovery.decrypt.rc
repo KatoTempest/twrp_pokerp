@@ -99,6 +99,20 @@ service vendor.keymaster-3-0 /vendor/bin/android.hardware.keymaster@3.0-service
     disabled
     seclabel u:r:recovery:s0
 
+service vendor.drm-clearkey-hal-1-1 /vendor/bin/android.hardware.drm@1.1-service.clearkey
+    class core
+    user root
+    group root mediadrm
+    ioprio rt 4
+    seclabel u:r:recovery:s0
+
+service vendor.drm-widevine-hal-1-1 /vendor/bin/android.hardware.drm@1.1-service.widevine
+    class hal
+    user root
+    group root mediadrm drmrpc
+    ioprio rt 4
+    seclabel u:r:recovery:s0
+
 on property:hwservicemanager.ready=true
     start teei_daemon
     start capi-2-0
