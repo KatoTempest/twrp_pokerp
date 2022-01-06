@@ -10,7 +10,7 @@ on init
     setprop crypto.ready 1
 
 on fs
-    export ANDROID_ROOT /system_root
+    export ANDROID_ROOT /system
     mkdir /mnt/vendor/persist 0700 root root
     mount ext4 /dev/block/platform/bootdevice/by-name/persist /mnt/vendor/persist
     install_keyring
@@ -29,7 +29,7 @@ service patchlevel /sbin/patchlevel.sh
     oneshot
     seclabel u:r:recovery:s0
 
-service teei_daemon /vendor/bin/teei_daemon
+service teei_daemon /system/bin/teei_daemon
     class core
     user root
     group root
@@ -37,20 +37,20 @@ service teei_daemon /vendor/bin/teei_daemon
     oneshot
     seclabel u:r:recovery:s0
 
-service keymaster_attestation-1-1 /vendor/bin/vendor.mediatek.hardware.keymaster_attestation@1.1-service
+service keymaster_attestation-1-1 /system/bin/vendor.mediatek.hardware.keymaster_attestation@1.1-service
     interface vendor.mediatek.hardware.keymaster_attestation@1.1::IKeymasterDevice default
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service capi-2-0 /vendor/bin/vendor.microtrust.hardware.capi@2.0-service
+service capi-2-0 /system/bin/vendor.microtrust.hardware.capi@2.0-service
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service hidl_memory /sbin/android.hidl.allocator@1.0-service
+service hidl_memory /system/android.hidl.allocator@1.0-service
     user root
     group root
     disabled
@@ -69,7 +69,7 @@ service servicemanager /sbin/servicemanager
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeperd /vendor/bin/gatekeeperd /tmp/misc/gatekeeper
+service gatekeeperd /system/bin/gatekeeperd /tmp/misc/gatekeeper
     class late_start
     user root
     seclabel u:r:recovery:s0
@@ -87,26 +87,26 @@ service keystore /sbin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service vendor.gatekeeper-1-0 /vendor/bin/android.hardware.gatekeeper@1.0-service
+service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service vendor.keymaster-3-0 /vendor/bin/android.hardware.keymaster@3.0-service
+service keymaster-3-0 /system/bin/android.hardware.keymaster@3.0-service
     user root
     group root drmrpc
     disabled
     seclabel u:r:recovery:s0
 
-service vendor.drm-clearkey-hal-1-1 /vendor/bin/android.hardware.drm@1.1-service.clearkey
+service drm-clearkey-hal-1-1 /system/bin/android.hardware.drm@1.1-service.clearkey
     class core
     user root
     group root mediadrm
     ioprio rt 4
     seclabel u:r:recovery:s0
 
-service vendor.drm-widevine-hal-1-1 /vendor/bin/android.hardware.drm@1.1-service.widevine
+service drm-widevine-hal-1-1 /system/bin/android.hardware.drm@1.1-service.widevine
     class hal
     user root
     group root mediadrm drmrpc
@@ -117,16 +117,16 @@ on property:hwservicemanager.ready=true
     start teei_daemon
     start capi-2-0
     start hidl_memory
-    start vendor.keymaster-3-0
-    start vendor.gatekeeper-1-0
+    start keymaster-3-0
+    start gatekeeper-1-0
     start keymaster_attestation-1-1
 
 on property:ro.crypto.state=unsupported
     stop hidl_memory
     stop capi-2-0
     stop teei_daemon
-    stop vendor.keymaster-3-0
-    stop vendor.gatekeeper-1-0
+    stop keymaster-3-0
+    stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
     stop keymaster_attestation-1-1
@@ -135,8 +135,8 @@ on property:ro.crypto.state=unencrypted
     stop hidl_memory
     stop capi-2-0
     stop teei_daemon
-    stop vendor.keymaster-3-0
-    stop vendor.gatekeeper-1-0
+    stop keymaster-3-0
+    stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
     stop keymaster_attestation-1-1
@@ -145,15 +145,15 @@ on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
     stop hidl_memory
     stop capi-2-0
     stop teei_daemon
-    stop vendor.keymaster-3-0
-    stop vendor.gatekeeper-1-0
+    stop keymaster-3-0
+    stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
     stop keymaster_attestation-1-1
 
 on property:vendor.sys.listeners.registered=true
-    start vendor.keymaster-3-0
-    start vendor.gatekeeper-1-0
+    start keymaster-3-0
+    start gatekeeper-1-0
     start servicemanager
 
 on boot
