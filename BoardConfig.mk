@@ -17,14 +17,15 @@ BUILD_BROKEN_DUP_RULES := true
 TARGET_ARCH := arm64
 TARGET_ARCH_VARIANT := armv8-a
 TARGET_CPU_ABI := arm64-v8a
-TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := generic
+TARGET_CPU_VARIANT_RUNTIME := cortex-a53
 
 TARGET_2ND_ARCH := arm
-TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_ARCH_VARIANT := armv8-a
 TARGET_2ND_CPU_ABI := armeabi-v7a
 TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := generic
+TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a53
 TARGET_BOARD_SUFFIX := _64
 TARGET_USES_64_BIT_BINDER := true
 
@@ -49,7 +50,7 @@ TARGET_USERIMAGES_USE_F2FS := true
 TARGET_COPY_OUT_VENDOR := vendor
 
 # Kernel
-BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 buildvariant=user androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE := bootopt=64S3,32N2,64N2 androidboot.selinux=permissive
 TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/Image.gz-dtb
 #TARGET_PREBUILT_DTB := $(DEVICE_PATH)/prebuilt/kernel_dtb
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
@@ -120,10 +121,10 @@ TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 #TW_LOAD_VENDOR_MODULES := true
 #TW_FORCE_USE_BUSYBOX := true
-#TW_HAVE_SELINUX := true
+TW_HAVE_SELINUX := true
 
 # TWRP specific changes
-LOCAL_C_INCLUDES += system/vold \
+#LOCAL_C_INCLUDES += system/vold \
 
 #TWRP_REQUIRED_MODULES += \
     relink_libraries \
@@ -164,18 +165,18 @@ LOCAL_C_INCLUDES += system/vold \
 
 # Crypto
 TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_CRYPTO_FBE := true
+#TW_INCLUDE_CRYPTO_FBE := true
 #TW_CRYPTO_USE_SYSTEM_VOLD := true
 #TW_INCLUDE_FBE_METADATA_DECRYPT := true
 
 #Crypto modules
 
-TWRP_REQUIRED_MODULES += \
+#TWRP_REQUIRED_MODULES += \
     vold_prepare_subdirs \
     task_recovery_profiles.json \
     fscryptpolicyget
 
-TWRP_REQUIRED_MODULES += \
+#TWRP_REQUIRED_MODULES += \
         plat_service_contexts \
         servicemanager \
         servicemanager.rc
@@ -202,10 +203,10 @@ BOARD_SEPOLICY_VERS := 28.0
 #SELINUX_IGNORE_NEVERALLOWS := true
 
 # SELinux
-SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
-SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
-SELINUX_IGNORE_NEVERALLOWS := true
-TARGET_USES_PREBUILT_VENDOR_SEPOLICY := true
+#SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
+#SYSTEM_EXT_PUBLIC_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/public
+#SELINUX_IGNORE_NEVERALLOWS := true
+#TARGET_USES_PREBUILT_VENDOR_SEPOLICY := true
 
 
 # Avb

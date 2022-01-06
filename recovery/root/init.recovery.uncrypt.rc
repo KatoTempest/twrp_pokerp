@@ -1,0 +1,18 @@
+service uncrypt /vendor/bin/uncrypt
+    class core
+    socket uncrypt stream 600 system system
+    disabled
+    seclabel u:r:recovery:s0
+
+service setup-bcb /vendor/bin/uncrypt --setup-bcb
+    class core
+    socket uncrypt stream 600 system system
+    disabled
+    seclabel u:r:recovery:s0
+
+service clear-bcb /vendor/bin/uncrypt --clear-bcb
+    class core
+    socket uncrypt stream 600 system system
+    disabled
+    seclabel u:r:recovery:s0
+

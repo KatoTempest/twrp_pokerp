@@ -5,14 +5,22 @@ on boot
 
 on init
     start patchlevel
+    install_keyring
+    installkey /data
+    setprop crypto.ready 1
 
 on fs
     export ANDROID_ROOT /system_root
+    mkdir /mnt/vendor/persist 0700 root root
+    mount ext4 /dev/block/platform/bootdevice/by-name/persist /mnt/vendor/persist
     install_keyring
+    installkey /data
+    setprop crypto.ready 1
 
 on fs
     start hwservicemanager
     start servicemanager
+    start teei_daemon
 
 service patchlevel /sbin/patchlevel.sh
     user root
@@ -26,6 +34,7 @@ service teei_daemon /vendor/bin/teei_daemon
     user root
     group root
     disabled
+    oneshot
     seclabel u:r:recovery:s0
 
 service keymaster_attestation-1-1 /vendor/bin/vendor.mediatek.hardware.keymaster_attestation@1.1-service
@@ -60,6 +69,11 @@ service servicemanager /sbin/servicemanager
     disabled
     seclabel u:r:recovery:s0
 
+service gatekeeperd /vendor/bin/gatekeeperd /tmp/misc/gatekeeper
+    class late_start
+    user root
+    seclabel u:r:recovery:s0
+
 service keystore_auth /sbin/keystore_auth
     oneshot
     user system
@@ -67,7 +81,7 @@ service keystore_auth /sbin/keystore_auth
     disabled
     seclabel u:r:recovery:s0
 
-service keystore /sbin/keystore /data/misc/keystore
+service keystore /sbin/keystore /tmp/misc/keystore
     user root
     group root keystore drmrpc readproc
     disabled
@@ -122,6 +136,11 @@ on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
     stop servicemanager
     stop hwservicemanager
     stop keymaster_attestation-1-1
+
+on property:vendor.sys.listeners.registered=true
+    start vendor.keymaster-3-0
+    start vendor.gatekeeper-1-0
+    start servicemanager
 
 on boot
     # Enable Power modes and set the CPU Freq Sampling rates

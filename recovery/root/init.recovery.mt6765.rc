@@ -1,4 +1,8 @@
 import /init.recovery.decrypt.rc
+import /ueventd.mt6765.rc
+import /init.recovery.vdc.rc
+import /init.recovery.vold.rc
+import /init.recovery.uncrypt.rc
 
 on init
     mkdir /config
