@@ -29,21 +29,6 @@ service patchlevel /sbin/patchlevel.sh
     oneshot
     seclabel u:r:recovery:s0
 
-service teei_daemon /system/bin/teei_daemon
-    class core
-    user root
-    group root
-    disabled
-    oneshot
-    seclabel u:r:recovery:s0
-
-service keymaster_attestation-1-1 /system/bin/vendor.mediatek.hardware.keymaster_attestation@1.1-service
-    interface vendor.mediatek.hardware.keymaster_attestation@1.1::IKeymasterDevice default
-    user root
-    group root
-    disabled
-    seclabel u:r:recovery:s0
-
 service capi-2-0 /system/bin/vendor.microtrust.hardware.capi@2.0-service
     user root
     group root
@@ -67,11 +52,6 @@ service servicemanager /sbin/servicemanager
     user root
     group root readproc
     disabled
-    seclabel u:r:recovery:s0
-
-service gatekeeperd /system/bin/gatekeeperd /tmp/misc/gatekeeper
-    class late_start
-    user root
     seclabel u:r:recovery:s0
 
 service keystore_auth /sbin/keystore_auth
@@ -99,18 +79,23 @@ service keymaster-3-0 /system/bin/android.hardware.keymaster@3.0-service
     disabled
     seclabel u:r:recovery:s0
 
-service drm-clearkey-hal-1-1 /system/bin/android.hardware.drm@1.1-service.clearkey
-    class core
+service teei_daemon /system/bin/teei_daemon \
+    -r 020b0000000000000000000000000000 \
+    -r 020f0000000000000000000000000000 \
+    -r 06090000000000000000000000000000 \
+    -r 05120000000000000000000000000000 \
+    -r 40188311faf343488db888ad39496f9a \
+    -r 07060000000000000000000000007169 \
+    -r 9073f03a9618383bb1856eb3f990babd \
+    -r 08050000000000000000000000003419 \
+    -t 5020170115e016302017012521300000 \
+    -t 0f5eed3c3b5a47afacca69a84bf0efad \
+    -t 07407000000000000000000000000000 \
+    -t 05160000000000000000000000000000 \
+    -t 91dba524a6e24909acc48abd7163121a
     user root
-    group root mediadrm
-    ioprio rt 4
-    seclabel u:r:recovery:s0
-
-service drm-widevine-hal-1-1 /system/bin/android.hardware.drm@1.1-service.widevine
-    class hal
-    user root
-    group root mediadrm drmrpc
-    ioprio rt 4
+    group root
+    disabled
     seclabel u:r:recovery:s0
 
 on property:hwservicemanager.ready=true
@@ -119,7 +104,6 @@ on property:hwservicemanager.ready=true
     start hidl_memory
     start keymaster-3-0
     start gatekeeper-1-0
-    start keymaster_attestation-1-1
 
 on property:ro.crypto.state=unsupported
     stop hidl_memory
@@ -129,7 +113,6 @@ on property:ro.crypto.state=unsupported
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
-    stop keymaster_attestation-1-1
 
 on property:ro.crypto.state=unencrypted
     stop hidl_memory
@@ -139,7 +122,6 @@ on property:ro.crypto.state=unencrypted
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
-    stop keymaster_attestation-1-1
 
 on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
     stop hidl_memory
@@ -149,7 +131,6 @@ on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
-    stop keymaster_attestation-1-1
 
 on property:vendor.sys.listeners.registered=true
     start keymaster-3-0

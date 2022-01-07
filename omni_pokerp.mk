@@ -16,6 +16,15 @@ PRODUCT_BRAND := motorola
 PRODUCT_MODEL := moto e(6) plus
 PRODUCT_MANUFACTURER := motorola
 
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    PRODUCT_NAME=pokerp \
+    BUILD_PRODUCT=pokerp \
+    TARGET_DEVICE=pokerp
+
 # HACK: Set vendor patch level
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.build.security_patch=2099-12-31
+
+PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
+    ro.bootimage.build.date.utc \
+    ro.build.date.utc
