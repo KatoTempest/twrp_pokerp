@@ -16,4 +16,4 @@ ro.mtk_tee_gp_support=1
 ro.mtk_microtrust_tee_support=1
 ro.mtk_soter_support=1
 ro.zygote=zygote64_32
-ro.crypto.volume.filenames_mode=aes-256-xts
+ro.crypto.volume.filenames_mode=aes-256-cts

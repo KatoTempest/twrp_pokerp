@@ -10,9 +10,7 @@ on init
     setprop crypto.ready 1
 
 on fs
-    export ANDROID_ROOT /system
-    mkdir /mnt/vendor/persist 0700 root root
-    mount ext4 /dev/block/platform/bootdevice/by-name/persist /mnt/vendor/persist
+    export ANDROID_ROOT /system_root
     install_keyring
     installkey /data
     setprop crypto.ready 1
@@ -29,13 +27,13 @@ service patchlevel /sbin/patchlevel.sh
     oneshot
     seclabel u:r:recovery:s0
 
-service capi-2-0 /vendor/bin/vendor.microtrust.hardware.capi@2.0-service
+service capi-2-0 /sbin/vendor.microtrust.hardware.capi@2.0-service
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service hidl_memory /vendor/android.hidl.allocator@1.0-service
+service hidl_memory /sbin/android.hidl.allocator@1.0-service
     user root
     group root
     disabled
@@ -67,19 +65,19 @@ service keystore /sbin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /vendor/bin/android.hardware.gatekeeper@1.0-service
+service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service keymaster-3-0 /vendor/bin/android.hardware.keymaster@3.0-service
+service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service
     user root
     group root drmrpc
     disabled
     seclabel u:r:recovery:s0
 
-service teei_daemon /vendor/bin/teei_daemon \
+service teei_daemon /sbin/teei_daemon \
     -r 020b0000000000000000000000000000 \
     -r 020f0000000000000000000000000000 \
     -r 06090000000000000000000000000000 \
