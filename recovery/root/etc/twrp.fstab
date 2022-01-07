@@ -2,13 +2,13 @@
 /system_root	   ext4	      /dev/block/platform/bootdevice/by-name/system		flags=display="System";wipeingui;backup=0
 /system_image	   emmc	      /dev/block/by-name/system				             flags=backup=1;flashimg=1
 /vendor            ext4     /dev/block/platform/bootdevice/by-name/vendor        flags=display="Vendor";backup=1;flashimg=1
-/data              ext4     /dev/block/platform/bootdevice/by-name/userdata      flags=fileencryption=aes-256-xts
+/data              ext4     /dev/block/platform/bootdevice/by-name/userdata      flags=encryptable=/dev/block/platform/bootdevice/by-name/metadata
 /cache             ext4     /dev/block/platform/bootdevice/by-name/cache         flags=display="Cache"
 /protect_f         ext4     /dev/block/platform/bootdevice/by-name/protect1      flags=display="Protect_f"
 /protect_s         ext4     /dev/block/platform/bootdevice/by-name/protect2      flags=display="Protect_s"
 /nvdata            ext4     /dev/block/platform/bootdevice/by-name/nvdata        flags=display="Nvdata"
 /nvcfg             ext4     /dev/block/platform/bootdevice/by-name/nvcfg         flags=display="Nvcfg"
-/persist           ext4     /dev/block/platform/bootdevice/by-name/persist       flags=display="Persist";mounttodecrypt
+/persist           ext4     /dev/block/platform/bootdevice/by-name/persist       flags=display="Persist"
 /external_sd       auto      /dev/block/mmcblk1p1  /dev/block/mmcblk1            flags=display="MicroSD";storage;wipeingui;removable;fsflags="utf8"
 /usb-otg           auto      /dev/block/sda1  /dev/block/sda                     flags=display="USB-OTG";storage;wipeingui;removable;fsflags="utf8"
 /persistent        emmc     /dev/block/platform/bootdevice/by-name/frp           flags=display="Persistent"
