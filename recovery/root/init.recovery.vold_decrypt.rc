@@ -27,20 +27,6 @@ service patchlevel /sbin/patchlevel.sh
     oneshot
     seclabel u:r:recovery:s0
 
-service drm-hal-1-0 /system_root/system/bin/android.hardware.drm@1.0-service
-    user root
-    group root drmrpc
-    ioprio rt 4
-    writepid /dev/cpuset/foreground/tasks
-    seclabel u:r:recovery:s0
-
-service drm-clearkey-hal-1-1 /system_root/system/bin/android.hardware.drm@1.1-service.clearkey
-    user root
-    group root mediadrm
-    ioprio rt 4
-    writepid /dev/cpuset/foreground/tasks
-    seclabel u:r:recovery:s0
-
 service capi-2-0 /sbin/vendor.microtrust.hardware.capi@2.0-service
     user root
     group root
@@ -116,8 +102,6 @@ on property:hwservicemanager.ready=true
     start hidl_memory
     start keymaster-3-0
     start gatekeeper-1-0
-    start drm-hal-1-0
-    start drm-clearkey-hal-1-1
 
 on property:ro.crypto.state=unsupported
     stop hidl_memory
@@ -127,8 +111,6 @@ on property:ro.crypto.state=unsupported
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
-    stop drm-hal-1-0
-    stop drm-clearkey-hal-1-1
 
 on property:ro.crypto.state=unencrypted
     stop hidl_memory
@@ -138,8 +120,6 @@ on property:ro.crypto.state=unencrypted
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
-    stop drm-hal-1-0
-    stop drm-clearkey-hal-1-1
 
 on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
     stop hidl_memory
@@ -149,15 +129,11 @@ on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
-    stop drm-hal-1-0
-    stop drm-clearkey-hal-1-1
 
 on property:vendor.sys.listeners.registered=true
     start keymaster-3-0
     start gatekeeper-1-0
     start servicemanager
-    start drm-hal-1-0
-    start drm-clearkey-hal-1-1
 
 on boot
     # Enable Power modes and set the CPU Freq Sampling rates
