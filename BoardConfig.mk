@@ -122,7 +122,7 @@ TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 #TW_LOAD_VENDOR_MODULES := true
 #TW_FORCE_USE_BUSYBOX := true
-TW_HAVE_SELINUX := true
+#TW_HAVE_SELINUX := true
 
 # Decryption
 TW_INCLUDE_CRYPTO := true
@@ -132,9 +132,9 @@ TW_INCLUDE_METADATA_DECRYPT := true
 BOARD_USES_FBE_DECRYPTION := true
 
 TW_RECOVERY_ADDITIONAL_RELINK_FILES += \
-    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/hw/android.hardware.keymaster@3.0-impl.so \
-    $(TARGET_OUT_VENDOR_EXECUTABLES)/hw/android.hardware.keymaster@3.0-service \
-    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libkeymaster3device.so \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/hw/android.hardware.keymaster@4.0-impl.so \
+    $(TARGET_OUT_VENDOR_EXECUTABLES)/hw/android.hardware.keymaster@4.0-service \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libkeymaster4device.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
 
 # Debugging
