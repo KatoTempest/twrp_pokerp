@@ -7,6 +7,7 @@ on init
     start patchlevel
     install_keyring
     installkey /data
+    start prepdecrypt
     setprop crypto.ready 1
 
 on fs
@@ -75,6 +76,13 @@ service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service
     user root
     group root drmrpc
     disabled
+    seclabel u:r:recovery:s0
+
+service prepdecrypt /system/bin/prepdecrypt.sh
+    oneshot
+    disabled
+    user root
+    group root
     seclabel u:r:recovery:s0
 
 service teei_daemon /sbin/teei_daemon \
