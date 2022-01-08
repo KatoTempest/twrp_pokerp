@@ -85,7 +85,7 @@ service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service
     disabled
     seclabel u:r:recovery:s0
 
-service keymaster-4-0 /sbin/android.hardware.keymaster@4.0-service
+service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service
     user root
     group root drmrpc
     disabled
@@ -114,7 +114,7 @@ on property:hwservicemanager.ready=true
     start teei_daemon
     start capi-2-0
     start hidl_memory
-    start keymaster-4-0
+    start keymaster-3-0
     start gatekeeper-1-0
     start drm-hal-1-0
     start drm-clearkey-hal-1-1
@@ -123,7 +123,7 @@ on property:ro.crypto.state=unsupported
     stop hidl_memory
     stop capi-2-0
     stop teei_daemon
-    stop keymaster-4-0
+    stop keymaster-3-0
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
@@ -134,7 +134,7 @@ on property:ro.crypto.state=unencrypted
     stop hidl_memory
     stop capi-2-0
     stop teei_daemon
-    stop keymaster-4-0
+    stop keymaster-3-0
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
@@ -145,7 +145,7 @@ on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
     stop hidl_memory
     stop capi-2-0
     stop teei_daemon
-    stop keymaster-4-0
+    stop keymaster-3-0
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
@@ -153,7 +153,7 @@ on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
     stop drm-clearkey-hal-1-1
 
 on property:vendor.sys.listeners.registered=true
-    start keymaster-4-0
+    start keymaster-3-0
     start gatekeeper-1-0
     start servicemanager
     start drm-hal-1-0
