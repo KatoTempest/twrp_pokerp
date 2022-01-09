@@ -1,5 +1,5 @@
 # For MTK DRM integration:
-# service teei_daemon /system_root/system/bin/teei_daemon \
+service teei_daemon /vendor/bin/teei_daemon \
     -r 020b0000000000000000000000000000 \
     -r 020f0000000000000000000000000000 \
     -r 06090000000000000000000000000000 \
@@ -8,13 +8,17 @@
     -r 07060000000000000000000000007169 \
     -r 9073f03a9618383bb1856eb3f990babd \
     -r 08050000000000000000000000003419 \
-    -t 5020170115e016302017012521300000 \
-    -t 0f5eed3c3b5a47afacca69a84bf0efad \
-    -t 07407000000000000000000000000000 \
-    -t 05160000000000000000000000000000 \
-    -t 91dba524a6e24909acc48abd7163121a
-    user root
-    group root
+    -r 5020170115e016302017012521300000 \
+    -r 0f5eed3c3b5a47afacca69a84bf0efad \
+    -r 07407000000000000000000000000000 \
+    -r 05160000000000000000000000000000 \
+    -r 91dba524a6e24909acc48abd7163121a
+
+# For Microtrust internal development
+service teei_daemon /vendor/bin/teei_daemon
+    class core
+    user system
+    group system
     disabled
     seclabel u:r:recovery:s0
 

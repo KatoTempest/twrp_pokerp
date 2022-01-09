@@ -1,10 +1,7 @@
 import /init.microtrust.rc
 
-on boot
-    wait /sbin/patchlevel_set
 
 on init
-    start patchlevel
     install_keyring
     installkey /data
     setprop crypto.ready 1
@@ -18,22 +15,20 @@ on fs
 on fs
     start hwservicemanager
     start servicemanager
-    start teei_daemon
 
-service patchlevel /sbin/patchlevel.sh
+
+service capi-2-0 /vendor/bin/vendor.microtrust.hardware.capi@2.0-service
     user root
     group root
-    disabled
-    oneshot
     seclabel u:r:recovery:s0
 
-service capi-2-0 /sbin/vendor.microtrust.hardware.capi@2.0-service
+service keymaster_attestation-1-1 /vendor/bin/vendor.mediatek.hardware.keymaster_attestation@1.1-service
+    interface vendor.mediatek.hardware.keymaster_attestation@1.1::IKeymasterDevice default
     user root
     group root
-    disabled
     seclabel u:r:recovery:s0
 
-service hidl_memory /sbin/android.hidl.allocator@1.0-service
+service hidl_memory /vendor/bin/android.hidl.allocator@1.0-service
     user root
     group root
     disabled
@@ -65,70 +60,73 @@ service keystore /sbin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service
+service gatekeeper-1-0 /vendor/bin/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
     seclabel u:r:recovery:s0
 
-service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service
+service keymaster-3-0 /vendor/bin/android.hardware.keymaster@3.0-service
     user root
     group root drmrpc
     disabled
     seclabel u:r:recovery:s0
 
-service teei_daemon /sbin/teei_daemon \
-    -r 020b0000000000000000000000000000 \
-    -r 020f0000000000000000000000000000 \
-    -r 06090000000000000000000000000000 \
-    -r 05120000000000000000000000000000 \
-    -r 40188311faf343488db888ad39496f9a \
-    -r 07060000000000000000000000007169 \
-    -r 9073f03a9618383bb1856eb3f990babd \
-    -r 08050000000000000000000000003419 \
-    -t 5020170115e016302017012521300000 \
-    -t 0f5eed3c3b5a47afacca69a84bf0efad \
-    -t 07407000000000000000000000000000 \
-    -t 05160000000000000000000000000000 \
-    -t 91dba524a6e24909acc48abd7163121a
+service drm-hal-1-0 /vendor/bin/hw/android.hardware.drm@1.0-service
     user root
-    group root
-    disabled
+    group root drmrpc
+    ioprio rt 4
+    writepid /dev/cpuset/foreground/tasks
+    seclabel u:r:recovery:s0
+
+service drm-clearkey-hal-1-1 /vendor/bin/hw/android.hardware.drm@1.1-service.clearkey
+    user root
+    group root mediadrm
+    ioprio rt 4
+    writepid /dev/cpuset/foreground/tasks
     seclabel u:r:recovery:s0
 
 on property:hwservicemanager.ready=true
-    start teei_daemon
     start capi-2-0
     start hidl_memory
     start keymaster-3-0
     start gatekeeper-1-0
+    start keymaster_attestation-1-1
+    start drm-hal-1-0
+    start drm-clearkey-hal-1-1
 
 on property:ro.crypto.state=unsupported
     stop hidl_memory
     stop capi-2-0
-    stop teei_daemon
     stop keymaster-3-0
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
+    stop keymaster_attestation-1-1
+    stop drm-hal-1-0
+    stop drm-clearkey-hal-1-1
 
 on property:ro.crypto.state=unencrypted
     stop hidl_memory
     stop capi-2-0
-    stop teei_daemon
     stop keymaster-3-0
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
+    stop keymaster_attestation-1-1
+    stop drm-hal-1-0
+    stop drm-clearkey-hal-1-1
 
 on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
     stop hidl_memory
     stop capi-2-0
-    stop teei_daemon
     stop keymaster-3-0
     stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
+    stop keymaster_attestation-1-1
+    stop drm-hal-1-0
+    stop drm-clearkey-hal-1-1
 
 on property:vendor.sys.listeners.registered=true
     start keymaster-3-0
