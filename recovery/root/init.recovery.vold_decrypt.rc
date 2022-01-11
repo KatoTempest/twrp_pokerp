@@ -13,12 +13,12 @@ on init
 
 on fs
     export ANDROID_ROOT /system_root
-
-
-on fs
     start hwservicemanager
     start servicemanager
-    start vndservicemanager
+    start teei_capi_2_0
+    start keyinstall-1-0
+    start vendor.keymaster-3-0
+    start keymaster_attestation-1-1
 
 on late-fs
     class_start early_hal
@@ -33,12 +33,6 @@ service keymaster_attestation-1-1 /vendor/bin/vendor.mediatek.hardware.keymaster
     interface vendor.mediatek.hardware.keymaster_attestation@1.1::IKeymasterDevice default
     user root
     group root
-    seclabel u:r:recovery:s0
-
-service hidl_memory /system/bin/android.hidl.allocator@1.0-service
-    user root
-    group root
-    disabled
     seclabel u:r:recovery:s0
 
 service hwservicemanager /sbin/hwservicemanager
@@ -67,13 +61,7 @@ service keystore /sbin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /vendor/bin/android.hardware.gatekeeper@1.0-service
-    user root
-    group root
-    disabled
-    seclabel u:r:recovery:s0
-
-service keymaster-3-0 /vendor/bin/android.hardware.keymaster@3.0-service
+service vendor.keymaster-3-0 /vendor/bin/android.hardware.keymaster@3.0-service
     user root
     group root drmrpc
     disabled
@@ -81,66 +69,36 @@ service keymaster-3-0 /vendor/bin/android.hardware.keymaster@3.0-service
 
 on property:hwservicemanager.ready=true
     start capi-2-0
-    start hidl_memory
-    start keymaster-3-0
-    start gatekeeper-1-0
+    start vendor.keymaster-3-0
     start keymaster_attestation-1-1
 
 
 on property:ro.crypto.state=unsupported
     stop hidl_memory
     stop capi-2-0
-    stop keymaster-3-0
-    stop gatekeeper-1-0
+    stop vendor.keymaster-3-0
     stop servicemanager
     stop hwservicemanager
     stop keymaster_attestation-1-1
 
 
 on property:ro.crypto.state=unencrypted
-    stop hidl_memory
     stop capi-2-0
-    stop keymaster-3-0
-    stop gatekeeper-1-0
+    stop vendor.keymaster-3-0
     stop servicemanager
     stop hwservicemanager
     stop keymaster_attestation-1-1
 
 
 on property:twrp.decrypt.done=true && property:twrp.all.users.decrypted=true
-    stop hidl_memory
     stop capi-2-0
     stop keymaster-3-0
-    stop gatekeeper-1-0
     stop servicemanager
     stop hwservicemanager
     stop keymaster_attestation-1-1
 
-
-on zygote-start && property:ro.crypto.state=unencrypted
-    # A/B update verifier that marks a successful boot.
-    exec_start update_verifier_nonencrypted
-    start netd
-    start zygote
-    start zygote_secondary
-
-on zygote-start && property:ro.crypto.state=unsupported
-    # A/B update verifier that marks a successful boot.
-    exec_start update_verifier_nonencrypted
-    start netd
-    start zygote
-    start zygote_secondary
-
-on zygote-start && property:ro.crypto.state=encrypted && property:ro.crypto.type=file
-    # A/B update verifier that marks a successful boot.
-    exec_start update_verifier_nonencrypted
-    start netd
-    start zygote
-    start zygote_secondary
-
 on property:vendor.sys.listeners.registered=true
-    start keymaster-3-0
-    start gatekeeper-1-0
+    start vendor.keymaster-3-0
     start servicemanager
 
 on boot
