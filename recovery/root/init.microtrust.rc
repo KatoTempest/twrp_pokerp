@@ -17,8 +17,8 @@ service teei_daemon /vendor/bin/teei_daemon \
 # For Microtrust internal development
 service teei_daemon /vendor/bin/teei_daemon
     class core
-    user system
-    group system
+    user root
+    group root
     disabled
     seclabel u:r:recovery:s0
 

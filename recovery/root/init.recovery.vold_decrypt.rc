@@ -2,19 +2,20 @@ import /init.microtrust.rc
 
 
 on init
-    install_keyring
+    start vold
+    trigger zygote-start
     installkey /data
-    setprop crypto.ready 1
 
 on fs
     export ANDROID_ROOT /system_root
-    install_keyring
-    installkey /data
-    setprop crypto.ready 1
+
 
 on fs
     start hwservicemanager
     start servicemanager
+
+on late-fs
+    class_start early_hal
 
 
 service capi-2-0 /vendor/bin/vendor.microtrust.hardware.capi@2.0-service
