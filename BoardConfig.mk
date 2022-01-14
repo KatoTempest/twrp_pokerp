@@ -97,9 +97,7 @@ TW_SCREEN_BLANK_ON_BOOT := true
 TW_INPUT_BLACKLIST := "hbtp_vm"
 RECOVERY_SDCARD_ON_DATA := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
-TW_INCLUDE_REPACKTOOLS := true
 TW_USE_TOOLBOX := true
-#TW_NEW_ION_HEAP := true
 TW_Y_OFFSET := 53
 TW_H_OFFSET := -53
 TW_NO_SCREEN_BLANK := true
@@ -120,41 +118,18 @@ TW_DEFAULT_BRIGHTNESS := 77
 TW_MAX_BRIGHTNESS := 255
 TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
-#TW_LOAD_VENDOR_MODULES := true
-#TW_FORCE_USE_BUSYBOX := true
-#TW_HAVE_SELINUX := true
 
 # Decryption
 TW_INCLUDE_CRYPTO := true
-#TW_INCLUDE_CRYPTO_FBE := true
-
-# Additional binaries & libraries needed for recovery
-TARGET_RECOVERY_DEVICE_MODULES += \
-    ashmemd_aidl_interface-cpp \
-    libashmemd_client
-
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
+TW_INCLUDE_CRYPTO_FBE := true
 
 # Debugging
 TARGET_USES_LOGD := true
 TWRP_INCLUDE_LOGCAT := true
 
-
 # Hack to get keymaster to recognize the key files
-#PLATFORM_SECURITY_PATCH := 2019-10-01
-#VENDOR_SECURITY_PATCH := 2019-10-01
-#PLATFORM_VERSION := 9
-
-# Hack: prevent anti rollback
-PLATFORM_SECURITY_PATCH := 2099-12-31
-VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
-PLATFORM_VERSION := 20.1.0
-
-BOARD_SEPOLICY_VERS := 28.0
-#BOARD_VENDOR_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy
-#SELINUX_IGNORE_NEVERALLOWS := true
+PLATFORM_SECURITY_PATCH := 2019-10-01
+VENDOR_SECURITY_PATCH := 2019-10-01
 
 # Avb
 BOARD_AVB_ENABLE := true
