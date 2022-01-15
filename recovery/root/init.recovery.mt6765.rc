@@ -1,6 +1,18 @@
 import /ueventd.mt6765.rc
 import /init.recovery.microtrust.rc
 
+on boot
+    wait /sbin/patchlevel_set
+
+on init
+    start patchlevel
+
+service patchlevel /sbin/patchlevel.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
 
 on init
     mkdir /config
