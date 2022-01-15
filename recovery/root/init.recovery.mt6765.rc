@@ -1,6 +1,7 @@
 import /ueventd.mt6765.rc
 import /init.recovery.microtrust.rc
 
+
 on init
     mkdir /config
     mount configfs none /config

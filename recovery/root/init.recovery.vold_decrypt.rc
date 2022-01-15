@@ -1,6 +1,6 @@
 on fs
     export ANDROID_ROOT /system_root
-    install_keyring
+    installkey /data
 
 on early-fs
     start vold
