@@ -10,7 +10,7 @@
 /cache				ext4	/dev/block/platform/bootdevice/by-name/cache
 /vendor				ext4	/dev/block/platform/bootdevice/by-name/vendor		flags=backup=0;display="Vendor";wipeingui
 /vendor_image		emmc	/dev/block/by-name/vendor				            flags=backup=1;flashimg=1
-/data				ext4	/dev/block/platform/bootdevice/by-name/userdata		flags=encryptable=aes-256-xts
+/data				ext4	/dev/block/platform/bootdevice/by-name/userdata		flags=keydirectory=/metadata/vold/metadata_encryption
 /dtbo				emmc	/dev/block/platform/bootdevice/by-name/dtbo
 /vbmeta				emmc	/dev/block/platform/bootdevice/by-name/vbmeta		flags=display="Vbmeta";backup=1;flashimg=1
 /para				emmc	/dev/block/platform/bootdevice/by-name/para 		flags=display="Para";wipeingui
