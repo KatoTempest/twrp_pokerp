@@ -1,4 +1,3 @@
-import /ueventd.mt6765.rc
 import /init.recovery.microtrust.rc
 
 on early-init
@@ -41,12 +40,6 @@ service teei_daemon /sbin/teei_daemon
     user system
     group system
     disabled
-    seclabel u:r:recovery:s0
-
-service hidl_memory /sbin/android.hidl.allocator@1.0-service
-    class hal
-    user root
-    group root
     seclabel u:r:recovery:s0
 
 service keystore /sbin/keystore /tmp/misc/keystore
