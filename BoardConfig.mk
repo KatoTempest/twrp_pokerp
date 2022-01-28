@@ -89,7 +89,7 @@ PLATFORM_SDK_VERSION := 28
 
 # TWRP Configuration
 TW_DEVICE_VERSION := 3
-TW_DEFAULT_DEVICE_NAME := pokerp_64
+#TW_DEFAULT_DEVICE_NAME := pokerp_64
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
 TW_SCREEN_BLANK_ON_BOOT := true
@@ -110,9 +110,9 @@ TW_NO_BATT_PERCENT := false
 TW_EXCLUDE_TWRPAPP := true
 TW_EXCLUDE_SUPERSU := true
 TW_INCLUDE_REPACKTOOLS := true
-#TW_INCLUDE_RESETPROP := true
+TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_LIBRESETPROP := true
-TW_OVERRIDE_SYSTEM_PROPS += "ro.build.fingerprint"
+#TW_OVERRIDE_SYSTEM_PROPS += "ro.build.fingerprint"
 TW_INTERNAL_STORAGE_PATH := "/data/media"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 TW_EXTERNAL_STORAGE_PATH := "/external_sd"
@@ -137,6 +137,10 @@ TARGET_RECOVERY_DEVICE_MODULES += \
 
 TW_RECOVERY_ADDITIONAL_RELINK_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/hw/android.hardware.keymaster@3.0-impl.so \
+    $(TARGET_OUT_VENDOR_EXECUTABLES)/hw/android.hardware.keymaster@3.0-service \
+    $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/libkeymaster3device.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
 
 # Debugging
