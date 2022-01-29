@@ -130,16 +130,13 @@ TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_METADATA_DECRYPT := true
 
-# Additional binaries & libraries needed for recovery
-TARGET_RECOVERY_DEVICE_MODULES += \
-    ashmemd_aidl_interface-cpp.so \
-    libashmemd_client \
-	libpuresoftkeymasterdevice 
-
-TW_RECOVERY_ADDITIONAL_RELINK_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
+#Additional libs
+TARGET_RECOVERY_DEVICE_MODULES += libpuresoftkeymasterdevice
+TARGET_RECOVERY_DEVICE_MODULES += ashmemd_aidl_interface-cpp
+TARGET_RECOVERY_DEVICE_MODULES += libashmemd_client
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so 
+TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so
 
 # Debugging
 TARGET_USES_LOGD := true
