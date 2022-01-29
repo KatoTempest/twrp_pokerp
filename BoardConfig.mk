@@ -127,6 +127,7 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Decryption
 TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_METADATA_DECRYPT := true
 
 # Additional binaries & libraries needed for recovery
