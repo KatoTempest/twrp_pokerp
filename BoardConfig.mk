@@ -89,7 +89,7 @@ TARGET_USES_UEFI := true
 PLATFORM_SDK_VERSION := 28
 
 # TWRP Configuration
-TW_DEVICE_VERSION := 3
+TW_DEVICE_VERSION := By Kato
 #TW_DEFAULT_DEVICE_NAME := pokerp_64
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
@@ -107,13 +107,13 @@ ENABLE_SCHEDBOOST := true
 TARGET_USES_MKE2FS := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_SKIP_COMPATIBILITY_CHECK := true
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
+#TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file
 TW_NO_BATT_PERCENT := false
 TW_EXCLUDE_TWRPAPP := true
 TW_EXCLUDE_SUPERSU := true
 TW_INCLUDE_REPACKTOOLS := true
 TW_INCLUDE_RESETPROP := true
-TW_INCLUDE_LIBRESETPROP := true
+#TW_INCLUDE_LIBRESETPROP := true
 #TW_OVERRIDE_SYSTEM_PROPS += "ro.build.fingerprint"
 TW_INTERNAL_STORAGE_PATH := "/data/media"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"

@@ -4,6 +4,12 @@ on early-init
     mount debugfs debugfs /sys/kernel/debug
     chmod 0755 /sys/kernel/debug
 
+on boot
+    wait /sbin/patchlevel_set
+
+on init
+    start patchlevel
+
 on init
     start vold
     install_keyring
@@ -12,6 +18,13 @@ on init
 on fs
     start hwservicemanager
     start servicemanager
+
+service patchlevel /sbin/patchlevel.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
 
 service hwservicemanager /sbin/hwservicemanager
     user root
