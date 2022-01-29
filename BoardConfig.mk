@@ -10,8 +10,10 @@ DEVICE_PATH := device/motorola/pokerp
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
 
-# Build
+#Build
 BUILD_BROKEN_DUP_RULES := true
+BUILD_BROKEN_USES_BUILD_COPY_HEADERS := true
+BUILD_BROKEN_VINTF_PRODUCT_COPY_FILES := true
 
 # Architecture
 TARGET_ARCH := arm64
@@ -129,16 +131,14 @@ TW_INCLUDE_METADATA_DECRYPT := true
 
 # Additional binaries & libraries needed for recovery
 TARGET_RECOVERY_DEVICE_MODULES += \
-    ashmemd_aidl_interface-cpp \
+    ashmemd_aidl_interface-cpp.so \
     libashmemd_client \
-	libpuresoftkeymasterdevice \
-	android.hidl.base@1.0.so
+	libpuresoftkeymasterdevice 
 
 TW_RECOVERY_ADDITIONAL_RELINK_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so \
-	$(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so
 
 # Debugging
 TARGET_USES_LOGD := true
