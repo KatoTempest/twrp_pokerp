@@ -12,6 +12,7 @@ on init
 
 on init
     start vold
+	installkey /data
     install_keyring
     setprop crypto.ready 1
 
@@ -89,33 +90,37 @@ service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service
     seclabel u:r:recovery:s0
 
 on property:hwservicemanager.ready=true
-#   start teei_daemon
-#   start capi-2.0
-#   start hidl_memory
+    start teei_daemon
+    start capi-2.0
+    start hidl_memory
     start keymaster-3-0
     start gatekeeper-1-0
     start keymaster_attestation-1-1
+	start keyinstall-1-0
 
 on property:ro.crypto.state=unsupported
     stop keymaster-3-0
     stop gatekeeper-1-0
-#   stop capi-2.0
-#   stop hidl_memory
-#   stop teei_daemon
+    stop capi-2.0
+    stop hidl_memory
+    stop teei_daemon
     stop keymaster_attestation-1-1
+	stop keyinstall-1-0
 
 on property:ro.crypto.state=unencrypted
     stop keymaster-3-0
     stop gatekeeper-1-0
-#   stop capi-2.0
-#   stop hidl_memory
-#   stop teei_daemon
+    stop capi-2.0
+    stop hidl_memory
+    stop teei_daemon
     stop keymaster_attestation-1-1
+	stop keyinstall-1-0
 
 on property:twrp.decrypt.done=true
     stop keymaster-3-0
     stop gatekeeper-1-0
-#   stop capi-2.0
-#   stop hidl_memory
-#   stop teei_daemon
+    stop capi-2.0
+    stop hidl_memory
+    stop teei_daemon
     stop keymaster_attestation-1-1
+	stop keyinstall-1-0
