@@ -50,8 +50,8 @@ service keystore_auth /sbin/keystore_auth
 
 service teei_daemon /sbin/teei_daemon
     class core
-    user system
-    group system
+    user root
+    group root
     disabled
     seclabel u:r:recovery:s0
 
