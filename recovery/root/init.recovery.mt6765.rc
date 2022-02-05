@@ -19,6 +19,11 @@ on init
 on fs
     start hwservicemanager
     start servicemanager
+	
+on post-fs
+	restorecon_recursive /metadata
+    mkdir /metadata/vold
+    chmod 0700 /metadata/vold
 
 service patchlevel /sbin/patchlevel.sh
     user root
@@ -47,6 +52,12 @@ service keystore_auth /sbin/keystore_auth
     user system
     group root
     disabled
+    seclabel u:r:recovery:s0
+	
+service hidl_memory /sbin/android.hidl.allocator@1.0-service
+    class hal
+    user root
+    group root
     seclabel u:r:recovery:s0
 
 service teei_daemon /sbin/teei_daemon
