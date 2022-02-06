@@ -6,6 +6,7 @@ on early-init
 
 on boot
     wait /sbin/patchlevel_set
+    setprop sys.usb.config adb
 
 on init
     start patchlevel
@@ -107,7 +108,6 @@ on property:hwservicemanager.ready=true
     start keymaster-3-0
     start gatekeeper-1-0
     start keymaster_attestation-1-1
-	start keyinstall-1-0
 
 on property:ro.crypto.state=unsupported
     stop keymaster-3-0
@@ -116,7 +116,6 @@ on property:ro.crypto.state=unsupported
     stop hidl_memory
     stop teei_daemon
     stop keymaster_attestation-1-1
-	stop keyinstall-1-0
 
 on property:ro.crypto.state=unencrypted
     stop keymaster-3-0
@@ -125,7 +124,6 @@ on property:ro.crypto.state=unencrypted
     stop hidl_memory
     stop teei_daemon
     stop keymaster_attestation-1-1
-	stop keyinstall-1-0
 
 on property:twrp.decrypt.done=true
     stop keymaster-3-0
@@ -134,4 +132,3 @@ on property:twrp.decrypt.done=true
     stop hidl_memory
     stop teei_daemon
     stop keymaster_attestation-1-1
-	stop keyinstall-1-0
