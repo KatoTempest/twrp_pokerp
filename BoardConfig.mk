@@ -115,6 +115,7 @@ TW_INCLUDE_REPACKTOOLS := true
 TW_INCLUDE_RESETPROP := true
 #TW_INCLUDE_LIBRESETPROP := true
 #TW_OVERRIDE_SYSTEM_PROPS += "ro.build.fingerprint"
+TW_NO_USB_STORAGE := false
 TW_INTERNAL_STORAGE_PATH := "/data/media"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 TW_EXTERNAL_STORAGE_PATH := "/external_sd"
@@ -129,6 +130,11 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_METADATA_DECRYPT := true
+TW_CRYPTO_FS_TYPE := "ext4"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/platform/bootdevice/by-name/userdata"
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,data=ordered"
+
 
 #Additional libs
 TARGET_RECOVERY_DEVICE_MODULES += libpuresoftkeymasterdevice
