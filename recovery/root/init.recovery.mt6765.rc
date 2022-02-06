@@ -20,11 +20,6 @@ on init
 on fs
     start hwservicemanager
     start servicemanager
-	
-on post-fs
-	restorecon_recursive /metadata
-    mkdir /metadata/vold
-    chmod 0700 /metadata/vold
 
 service patchlevel /sbin/patchlevel.sh
     user root
@@ -81,12 +76,6 @@ service gatekeeper-1-0 /sbin/android.hardware.gatekeeper@1.0-service
     group root
     seclabel u:r:recovery:s0
 
-service capi-2-0 /sbin/vendor.microtrust.hardware.capi@2.0-service
-    class hal
-    user root
-    group root
-    seclabel u:r:recovery:s0
-
 service keymaster_attestation-1-1 /sbin/vendor.mediatek.hardware.keymaster_attestation@1.1-service
     interface vendor.mediatek.hardware.keymaster_attestation@1.1::IKeymasterDevice default
     class hal
@@ -102,8 +91,8 @@ service keymaster-3-0 /sbin/android.hardware.keymaster@3.0-service
     seclabel u:r:recovery:s0
 
 on property:hwservicemanager.ready=true
-    start teei_daemon
-    start capi-2.0
+    #start teei_daemon
+    #start capi-2.0
     start hidl_memory
     start keymaster-3-0
     start gatekeeper-1-0
@@ -112,23 +101,42 @@ on property:hwservicemanager.ready=true
 on property:ro.crypto.state=unsupported
     stop keymaster-3-0
     stop gatekeeper-1-0
-    stop capi-2.0
+    #stop capi-2.0
     stop hidl_memory
-    stop teei_daemon
+    #stop teei_daemon
     stop keymaster_attestation-1-1
 
 on property:ro.crypto.state=unencrypted
     stop keymaster-3-0
     stop gatekeeper-1-0
-    stop capi-2.0
+    #stop capi-2.0
     stop hidl_memory
-    stop teei_daemon
+    #stop teei_daemon
     stop keymaster_attestation-1-1
 
 on property:twrp.decrypt.done=true
     stop keymaster-3-0
     stop gatekeeper-1-0
-    stop capi-2.0
+    #stop capi-2.0
     stop hidl_memory
-    stop teei_daemon
+    #stop teei_daemon
     stop keymaster_attestation-1-1
+on boot
+    chown root system /sys/class/dual_role_usb/dual-role-type_c_port0/mode
+    chown root system /sys/class/dual_role_usb/dual-role-type_c_port0/power_role
+    chown root system /sys/class/dual_role_usb/dual-role-type_c_port0/data_role
+    chmod 664 /sys/class/dual_role_usb/dual-role-type_c_port0/mode
+    chmod 664 /sys/class/dual_role_usb/dual-role-type_c_port0/power_role
+    chmod 664 /sys/class/dual_role_usb/dual-role-type_c_port0/data_role
+
+    chown root system /sys/class/dual_role_usb/dual-role-usb20/mode
+    chown root system /sys/class/dual_role_usb/dual-role-usb20/power_role
+    chown root system /sys/class/dual_role_usb/dual-role-usb20/data_role
+    chmod 664 /sys/class/dual_role_usb/dual-role-usb20/mode
+    chmod 664 /sys/class/dual_role_usb/dual-role-usb20/power_role
+    chmod 664 /sys/class/dual_role_usb/dual-role-usb20/data_role
+
+service vendor.usb-hal-1-1 /vendor/bin/hw/android.hardware.usb@1.1-service-mediatek
+    class hal
+    user root
+    group root
