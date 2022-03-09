@@ -50,6 +50,12 @@ service keystore_auth /sbin/keystore_auth
     disabled
     seclabel u:r:recovery:s0
 	
+service capi-2-0 /vendor/bin/hw/vendor.microtrust.hardware.capi@2.0-service
+    class hal
+    user root
+    group root
+    seclabel u:r:recovery:s0
+	
 service hidl_memory /sbin/android.hidl.allocator@1.0-service
     class hal
     user root

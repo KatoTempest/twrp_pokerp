@@ -24,10 +24,10 @@ PRODUCT_MODEL := moto e(6) plus
 PRODUCT_MANUFACTURER := motorola
 
 # HACK: Set vendor patch level
-PRODUCT_PROPERTY_OVERRIDES += \
+#PRODUCT_PROPERTY_OVERRIDES += \
     ro.vendor.build.security_patch=2099-12-31
 
-PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
+#PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
     ro.bootimage.build.date.utc \
     ro.build.date.utc
 
@@ -35,3 +35,13 @@ PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
     PRIVATE_BUILD_DESC="full_p161bn-user 9 PTBS29.401-58-8 58-8 release-keys"
 
 #BUILD_FINGERPRINT := motorola/pokerp_64/pokerp:9/PTBS29.401-58-8/58-8:user/release-keys
+
+# Time Zone data for recovery
+PRODUCT_COPY_FILES += \
+    system/timezone/output_data/iana/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
+
+# Properties for decryption
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.hardware.keystore=mt6765 \
+    ro.hardware.gatekeeper=mt6765 \
+    ro.build.system_root_image=true
