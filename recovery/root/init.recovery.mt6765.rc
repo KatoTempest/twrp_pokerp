@@ -9,7 +9,7 @@ on boot
     setprop sys.usb.config adb
 
 on init
-    start patchlevel
+    start predecrypt
 
 on init
     start vold
@@ -21,7 +21,7 @@ on fs
     start hwservicemanager
     start servicemanager
 
-service patchlevel /sbin/patchlevel.sh
+service predecrypt /sbin/predecrypt.sh
     user root
     group root
     disabled
