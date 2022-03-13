@@ -91,8 +91,8 @@ cp /v/lib64/hw/vendor.mediatek.hardware.keymaster_attestation@1.1-impl.so /vendo
 cp /v/lib64/hw/android.hardware.gatekeeper@1.0-impl /vendor/lib64/hw/
 #cp /v/lib64/hw/android.hardware.keymaster@3.0-impl /vendor/lib64/hw/
 
-cp /v/manifest.xml /vendor/
-cp /v/compatibility_matrix.xml /vendor/
+cp /v/manifest.xml /vendor/etc/vintf
+cp /v/compatibility_matrix.xml /vendor/etc/vintf
 
 relink /v/bin/hw/vendor.microtrust.hardware.capi@2-service
 relink /v/bin/hw/android.hardware.gatekeeper@1.0-service
