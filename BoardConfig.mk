@@ -85,7 +85,7 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/recovery.fstab
 # Platform
 TARGET_BOARD_PLATFORM := mt6765
 #BOARD_USES_METADATA_PARTITION := true
-TARGET_USES_UEFI := true
+#TARGET_USES_UEFI := true
 PLATFORM_SDK_VERSION := 28
 
 # TWRP Configuration
@@ -115,7 +115,7 @@ TW_INCLUDE_RESETPROP := true
 TW_INCLUDE_LIBRESETPROP := true
 #TW_OVERRIDE_SYSTEM_PROPS += "ro.build.fingerprint"
 TW_BRIGHTNESS_PATH := /sys/class/leds/lcd-backlight/brightness
-TW_DEFAULT_BRIGHTNESS := 115
+TW_DEFAULT_BRIGHTNESS := 125
 TW_MAX_BRIGHTNESS := 255
 TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
@@ -123,30 +123,26 @@ TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 # Decryption
 TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE := true
+
 
 # Additional binaries & libraries needed for recovery
 TARGET_RECOVERY_DEVICE_MODULES += \
     android.hidl.base@1.0 \
-    ashmemd_aidl_interface-cpp \
-    libashmemd_client \
+    libpuresoftkeymasterdevice 
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so 
-
-#Additional libs
-TARGET_RECOVERY_DEVICE_MODULES += libpuresoftkeymasterdevice
-TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so 
 
 # Debugging
 TARGET_USES_LOGD := true
 TWRP_INCLUDE_LOGCAT := true
 
-#Anti-Rollback
-PLATFORM_VERSION := 20.1.0
-PLATFORM_SECURITY_PATCH := 2099-12-31
-VENDOR_SECURITY_PATCH := 2099-12-31
+#Keymaster Security Patch
+PLATFORM_VERSION := 9.0.0
+PLATFORM_SECURITY_PATCH := 2021-08-01
+VENDOR_SECURITY_PATCH := 2021-08-01
 
 # AVB - Android Verified Boot / dm-verity
 BOARD_AVB_ENABLE := true

@@ -23,9 +23,12 @@ PRODUCT_BRAND := motorola
 PRODUCT_MODEL := moto e(6) plus
 PRODUCT_MANUFACTURER := motorola
 
-# HACK: Set vendor patch level
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.vendor.build.security_patch=2099-12-31
+BUILD_FINGERPRINT := motorola/pokerp_64/pokerp:9/PTBS29.401-58-8/58-8:user/release-keys
+
+PRODUCT_BUILD_PROP_OVERRIDES += \
+    TARGET_DEVICE=pokerp \
+    PRODUCT_NAME=pokerp_64 \
+    PRIVATE_BUILD_DESC="full_p161bn-user 9 PTBS29.401-58-8 58-8 release-keys"
 
 # Time Zone data for recovery
 PRODUCT_COPY_FILES += \

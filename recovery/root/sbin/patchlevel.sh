@@ -77,7 +77,7 @@ done
 
 temp_mount "$TEMPSYS" "system" "$syspath"
 if [ -f "$TEMPSYS/$BUILDPROP" ]; then
-    log_info "Current system is Oreo or above. Proceed with setting OS version and security patch level..."
+    log_info "Current system is S or above. Proceed with setting OS version and security patch level..."
     log_info "Build.prop exists! Setting system properties from build.prop"
     log_info "Current OS version: $osver"
     osver=$(grep -i 'ro.build.version.release' "$TEMPSYS/$BUILDPROP"  | cut -f2 -d'=' -s)
