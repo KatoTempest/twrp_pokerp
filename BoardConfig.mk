@@ -89,7 +89,7 @@ TARGET_BOARD_PLATFORM := mt6765
 PLATFORM_SDK_VERSION := 28
 
 # TWRP Configuration
-TW_DEVICE_VERSION := Special Test Version
+TW_DEVICE_VERSION := By Kato
 #TW_DEFAULT_DEVICE_NAME := pokerp_64
 TW_THEME := portrait_hdpi
 TW_EXTRA_LANGUAGES := true
@@ -128,12 +128,10 @@ TW_INCLUDE_FBE := true
 
 # Additional binaries & libraries needed for recovery
 TARGET_RECOVERY_DEVICE_MODULES += \
-    android.hidl.base@1.0 \
-    libpuresoftkeymasterdevice 
+    android.hidl.base@1.0 
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so \
-    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so 
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so 
 
 # Debugging
 TARGET_USES_LOGD := true
