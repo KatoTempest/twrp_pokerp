@@ -30,6 +30,11 @@ service patchlevel /sbin/patchlevel.sh
     disabled
     oneshot
     seclabel u:r:recovery:s0
+	
+service gatekeeperd /sbin/gatekeeperd /tmp/misc/gatekeeper
+    class late_start
+    user root
+    seclabel u:r:recovery:s0
 
 service hwservicemanager /sbin/hwservicemanager
     user root
