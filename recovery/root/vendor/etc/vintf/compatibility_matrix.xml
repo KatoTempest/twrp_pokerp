@@ -27,6 +27,14 @@
         <name>android.system.wifi.keystore</name>
         <version>1.0</version>
     </hal>
+    <hal format="hidl" optional="false">
+        <name>android.hardware.gatekeeper</name>
+        <version>1.0</version>
+        <interface>
+            <name>IGatekeeper</name>
+            <instance>default</instance>
+        </interface>
+    </hal>
     <vendor-ndk>
         <version>28</version>
     </vendor-ndk>

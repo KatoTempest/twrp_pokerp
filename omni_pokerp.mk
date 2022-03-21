@@ -37,5 +37,4 @@ PRODUCT_COPY_FILES += \
 # Properties for decryption
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.hardware.keystore=mt6765 \
-    ro.hardware.gatekeeper=mt6765 \
     ro.build.system_root_image=true
