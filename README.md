@@ -10,11 +10,13 @@ Whats Working:-
 
 *File Manager
 
+*Successfully decrypts if no lock screen is set
+
 --------------------------------
 Whats Not Working:-
 --------------------------------
 
-*Decryption
+*Decryption not work correctly with lock screen set
 
 Device configuration for Moto E(6) Plus (pokerp)
 ================================================================
