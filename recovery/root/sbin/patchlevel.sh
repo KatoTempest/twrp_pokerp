@@ -62,13 +62,13 @@ finish_error() {
     exit 0
 }
 
-osver_orig=$(getprop ro.build.version.release_orig)
-patchlevel_orig=$(getprop ro.build.version.security_patch_orig)
-osver=$(getprop ro.build.version.release)
-patchlevel=$(getprop ro.build.version.security_patch)
-device=$(getprop ro.product.device)
-fingerprint=$(getprop ro.build.fingerprint)
-product=$(getprop ro.build.product)
+osver_orig=$(9.0.0)
+patchlevel_orig=$(2021-08-01)
+osver=$(9.0.0)
+patchlevel=$(2021-08-01)
+device=$(pokerp)
+fingerprint=$(motorola/pokerp_64/pokerp:9/PTBS29.401-58-8/58-8:user/release-keys)
+product=$(pokerp)
 
 log_info "Running patchlevel pre-decrypt script for TWRP..."
 for file in $(find $venbin -type f); do
@@ -77,17 +77,15 @@ done
 
 temp_mount "$TEMPSYS" "system" "$syspath"
 if [ -f "$TEMPSYS/$BUILDPROP" ]; then
-    log_info "Current system is S or above. Proceed with setting OS version and security patch level..."
+    log_info "Current system is Squeak or above. Proceed with setting OS version and security patch level..."
     log_info "Build.prop exists! Setting system properties from build.prop"
     log_info "Current OS version: $osver"
-    osver=$(grep -i 'ro.build.version.release' "$TEMPSYS/$BUILDPROP"  | cut -f2 -d'=' -s)
     if [ -n "$osver" ]; then
         resetprop ro.build.version.release "$osver"
         sed -i "s/ro.build.version.release=.*/ro.build.version.release=""$osver""/g" "/$DEFAULTPROP" ;
         log_info "New OS Version: $osver"
     fi
     log_info "Current security patch level: $patchlevel"
-    patchlevel=$(grep -i 'ro.build.version.security_patch' "$TEMPSYS/$BUILDPROP"  | cut -f2 -d'=' -s)
     if [ -n "$patchlevel" ]; then
         resetprop ro.build.version.security_patch "$patchlevel"
         sed -i "s/ro.build.version.security_patch=.*/ro.build.version.security_patch=""$patchlevel""/g" "/$DEFAULTPROP" ;
@@ -96,7 +94,6 @@ if [ -f "$TEMPSYS/$BUILDPROP" ]; then
     # Only needed for some devices (for stock OTA capability), so set "SETFINGERPRINT" variable to "false" if your device isn't one of them
     if [ "$SETFINGERPRINT" = "true" ]; then
         log_info "Current fingerprint: $fingerprint"
-        fingerprint=$(grep -i 'ro.build.fingerprint' "$TEMPSYS/$BUILDPROP"  | cut -f2 -d'=' -s)
         if [ -n "$fingerprint" ]; then
             resetprop ro.build.fingerprint "$fingerprint"
             sed -i "s/ro.build.fingerprint=.*/ro.build.fingerprint=""$fingerprint""/g" "/$DEFAULTPROP" ;
