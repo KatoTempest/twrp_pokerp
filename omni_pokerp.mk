@@ -4,17 +4,11 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
-# Inherit from those products. Most specific first.
-$(call inherit-product-if-exists, $(SRC_TARGET_DIR)/product/embedded.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
-$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
+$(call inherit-product, build/target/product/embedded.mk)
 
-# Inherit from pokerp device
-$(call inherit-product, device/motorola/pokerp/device.mk)
-
-# Inherit some common Omni stuff.
+# Inherit from our custom product configuration
 $(call inherit-product, vendor/omni/config/common.mk)
-$(call inherit-product, vendor/omni/config/gsm.mk)
+
 
 # Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := pokerp
@@ -34,7 +28,6 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 PRODUCT_COPY_FILES += \
     system/timezone/output_data/iana/tzdata:recovery/root/system/usr/share/zoneinfo/tzdata
 
-# Properties for decryption
+# HACK: Set vendor patch level
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.hardware.keystore=mt6765 \
-    ro.build.system_root_image=true
+    ro.vendor.build.security_patch=2099-12-31
