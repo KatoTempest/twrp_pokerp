@@ -124,19 +124,46 @@ TW_INTERNAL_STORAGE_PATH := "/data/media/0"
 TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
 TW_EXTERNAL_STORAGE_PATH := "/external_sd"
 TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_OVERRIDE_SYSTEM_PROPS := \
+    "ro.build.product;ro.build.fingerprint=ro.system.build.fingerprint;ro.build.version.incremental;ro.product.device=ro.product.system.device;ro.product.model=ro.product.system.model;ro.product.name=ro.product.system.name"
 
-# Decryption
-TW_INCLUDE_CRYPTO := true
-TW_INCLUDE_CRYPTO_FBE := true
+
+# Encryption
+PLATFORM_VERSION := 127
 PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
-TW_USE_FSCRYPT_POLICY := 1
+PLATFORM_SECURITY_PATCH := 2099-12-31
+VENDOR_SECURITY_PATCH := 2099-12-31
+TW_INCLUDE_CRYPTO := true
 
 # Additional binaries & libraries needed for recovery
 TARGET_RECOVERY_DEVICE_MODULES += \
-    android.hidl.base@1.0 
+    android.hidl.base@1.0 \
+    ashmemd \
+    ashmemd_aidl_interface-cpp \
+    debuggerd \
+    libashmemd_client \
+    libcap \
+    libion \
+    libandroidicu \
+    libpcrecpp \
+    libxml2
+
+TW_RECOVERY_ADDITIONAL_RELINK_BINARY_FILES += \
+    $(TARGET_OUT_EXECUTABLES)/ashmemd \
+    $(TARGET_OUT_EXECUTABLES)/strace
+
+TW_RECOVERY_ADDITIONAL_RELINK_FILES += \
+    $(TARGET_OUT_EXECUTABLES)/debuggerd
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so 
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hidl.base@1.0.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/ashmemd_aidl_interface-cpp.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libashmemd_client.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libcap.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpcrecpp.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so
+
 
 # Debugging
 TARGET_USES_LOGD := true
